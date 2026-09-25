@@ -34,7 +34,7 @@ class CarListView(ListAPIView):
     serializer_class = CarSerializer
 
     def get_queryset(self):
-        queryset = Car.objects.all()
+        queryset = Car.objects.all().order_by("id")
         return filter_cars(queryset, self.request)
 
 
@@ -44,7 +44,7 @@ class CarDetailView(RetrieveAPIView):
 
 
 class CarBrandListView(ListAPIView):
-    queryset = CarBrand.objects.all()
+    queryset = CarBrand.objects.all().order_by("id")
     serializer_class = CarBrandSerializer
 
 
@@ -57,7 +57,7 @@ class CarModelListView(ListAPIView):
     serializer_class = CarModelSerializer
 
     def get_queryset(self):
-        queryset = CarModel.objects.all()
+        queryset = CarModel.objects.all().order_by("id")
         return filter_car_models(queryset, self.request)
 
 
@@ -67,7 +67,7 @@ class CarModelDetailView(RetrieveAPIView):
 
 
 class PartCategoryListView(ListAPIView):
-    queryset = PartCategory.objects.all()
+    queryset = PartCategory.objects.all().order_by("id")
     serializer_class = PartCategorySerializer
 
 
@@ -80,7 +80,7 @@ class CarPartListView(ListAPIView):
     serializer_class = CarPartSerializer
 
     def get_queryset(self):
-        queryset = CarPart.objects.all()
+        queryset = CarPart.objects.all().order_by("id")
         return filter_car_parts(queryset, self.request)
 
 
@@ -93,7 +93,7 @@ class CarPartByCarListView(ListAPIView):
     serializer_class = CarPartSerializer
 
     def get_queryset(self):
-        return CarPart.objects.filter(car_id=self.kwargs["car_id"])
+        return CarPart.objects.filter(car_id=self.kwargs["car_id"]).order_by("id")
 
 
 class CarPartByComponentDetailView(RetrieveAPIView):
@@ -109,7 +109,7 @@ class PartSpecificationListView(ListAPIView):
     serializer_class = PartSpecificationSerializer
 
     def get_queryset(self):
-        queryset = PartSpecification.objects.all()
+        queryset = PartSpecification.objects.all().order_by("id")
         return filter_part_specifications(queryset, self.request)
 
 
@@ -124,14 +124,14 @@ class CarPartSpecificationListView(ListAPIView):
     def get_queryset(self):
         return PartSpecification.objects.filter(
             car_part_id=self.kwargs["car_part_id"]
-        )
+        ).order_by("id")
 
 
 class RelatedCarPartListView(ListAPIView):
     serializer_class = RelatedCarPartSerializer
 
     def get_queryset(self):
-        queryset = RelatedCarPart.objects.all()
+        queryset = RelatedCarPart.objects.all().order_by("id")
         return filter_related_car_parts(queryset, self.request)
 
 
@@ -144,14 +144,16 @@ class CarPartRelatedListView(ListAPIView):
     serializer_class = RelatedCarPartSerializer
 
     def get_queryset(self):
-        return RelatedCarPart.objects.filter(car_part_id=self.kwargs["car_part_id"])
+        return RelatedCarPart.objects.filter(
+            car_part_id=self.kwargs["car_part_id"]
+        ).order_by("id")
 
 
 class PartSourceListView(ListAPIView):
     serializer_class = PartSourceSerializer
 
     def get_queryset(self):
-        queryset = PartSource.objects.all()
+        queryset = PartSource.objects.all().order_by("id")
         return filter_part_sources(queryset, self.request)
 
 
@@ -164,4 +166,6 @@ class CarPartSourceListView(ListAPIView):
     serializer_class = PartSourceSerializer
 
     def get_queryset(self):
-        return PartSource.objects.filter(car_part_id=self.kwargs["car_part_id"])
+        return PartSource.objects.filter(
+            car_part_id=self.kwargs["car_part_id"]
+        ).order_by("id")

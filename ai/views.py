@@ -11,7 +11,7 @@ class AIConversationListCreateView(ListCreateAPIView):
     serializer_class = AIConversationSerializer
 
     def get_queryset(self):
-        return AIConversation.objects.filter(user=self.request.user)
+        return AIConversation.objects.filter(user=self.request.user).order_by("id")
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -37,7 +37,9 @@ class AIMessageListCreateView(ListCreateAPIView):
         )
 
     def get_queryset(self):
-        return AIMessage.objects.filter(conversation=self.get_conversation())
+        return AIMessage.objects.filter(
+            conversation=self.get_conversation()
+        ).order_by("id")
 
     def perform_create(self, serializer):
         serializer.save(conversation=self.get_conversation())

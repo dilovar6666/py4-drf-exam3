@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from shop.views import (
+    CartDetailView,
     CartItemDetailView,
     CartItemListCreateView,
     CartListCreateView,
@@ -42,6 +43,11 @@ urlpatterns = [
         name="favorite-detail",
     ),
     path("account/cart/", CartListCreateView.as_view(), name="cart-list"),
+    path(
+        "account/cart/<int:pk>/",
+        CartDetailView.as_view(),
+        name="cart-detail",
+    ),
     path(
         "account/cart/items/",
         CartItemListCreateView.as_view(),

@@ -114,7 +114,7 @@ class UserCarListCreateView(ListCreateAPIView):
     serializer_class = UserCarSerializer
 
     def get_queryset(self):
-        return UserCar.objects.filter(user=self.request.user)
+        return UserCar.objects.filter(user=self.request.user).order_by("id")
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

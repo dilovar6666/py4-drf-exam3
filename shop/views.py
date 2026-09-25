@@ -32,7 +32,7 @@ from .serializers import (
 
 
 class PartBrandListView(ListAPIView):
-    queryset = PartBrand.objects.all()
+    queryset = PartBrand.objects.all().order_by("id")
     serializer_class = PartBrandSerializer
 
 
@@ -42,7 +42,7 @@ class PartBrandDetailView(RetrieveAPIView):
 
 
 class ProductCategoryListView(ListAPIView):
-    queryset = ProductCategory.objects.all()
+    queryset = ProductCategory.objects.all().order_by("id")
     serializer_class = ProductCategorySerializer
 
 
@@ -55,7 +55,7 @@ class SparePartListView(ListAPIView):
     serializer_class = SparePartSerializer
 
     def get_queryset(self):
-        queryset = SparePart.objects.all()
+        queryset = SparePart.objects.all().order_by("id")
         return filter_spare_parts(queryset, self.request)
 
 
@@ -68,7 +68,9 @@ class SparePartByCarPartListView(ListAPIView):
     serializer_class = SparePartSerializer
 
     def get_queryset(self):
-        return SparePart.objects.filter(car_part_id=self.kwargs["car_part_id"])
+        return SparePart.objects.filter(
+            car_part_id=self.kwargs["car_part_id"]
+        ).order_by("id")
 
 
 class CompatibleSparePartByCarListView(ListAPIView):
@@ -77,11 +79,11 @@ class CompatibleSparePartByCarListView(ListAPIView):
     def get_queryset(self):
         return SparePart.objects.filter(
             compatibilities__car_id=self.kwargs["car_id"]
-        ).distinct()
+        ).distinct().order_by("id")
 
 
 class SparePartImageListView(ListAPIView):
-    queryset = SparePartImage.objects.all()
+    queryset = SparePartImage.objects.all().order_by("id")
     serializer_class = SparePartImageSerializer
 
 
@@ -96,14 +98,14 @@ class SparePartImageByPartListView(ListAPIView):
     def get_queryset(self):
         return SparePartImage.objects.filter(
             spare_part_id=self.kwargs["spare_part_id"]
-        )
+        ).order_by("id")
 
 
 class PartCompatibilityListView(ListAPIView):
     serializer_class = PartCompatibilitySerializer
 
     def get_queryset(self):
-        queryset = PartCompatibility.objects.all()
+        queryset = PartCompatibility.objects.all().order_by("id")
         return filter_part_compatibilities(queryset, self.request)
 
 
@@ -117,7 +119,7 @@ class FavoriteListCreateView(ListCreateAPIView):
     serializer_class = FavoriteSerializer
 
     def get_queryset(self):
-        return Favorite.objects.filter(user=self.request.user)
+        return Favorite.objects.filter(user=self.request.user).order_by("id")
 
     def perform_create(self, serializer):
         spare_part = serializer.validated_data["spare_part"]
@@ -144,7 +146,7 @@ class CartListCreateView(ListCreateAPIView):
     serializer_class = CartSerializer
 
     def get_queryset(self):
-        return Cart.objects.filter(user=self.request.user)
+        return Cart.objects.filter(user=self.request.user).order_by("id")
 
     def perform_create(self, serializer):
         if Cart.objects.filter(user=self.request.user).exists():
@@ -153,12 +155,20 @@ class CartListCreateView(ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
+class CartDetailView(RetrieveDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CartSerializer
+
+    def get_queryset(self):
+        return Cart.objects.filter(user=self.request.user)
+
+
 class CartItemListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = CartItemSerializer
 
     def get_queryset(self):
-        return CartItem.objects.filter(cart__user=self.request.user)
+        return CartItem.objects.filter(cart__user=self.request.user).order_by("id")
 
     def perform_create(self, serializer):
         cart, _ = Cart.objects.get_or_create(user=self.request.user)
