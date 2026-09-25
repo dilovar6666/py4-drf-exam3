@@ -46,15 +46,18 @@ class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = "__all__"
+        extra_kwargs = {"user": {"read_only": True}}
 
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields = "__all__"
+        extra_kwargs = {"user": {"read_only": True}}
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
         fields = "__all__"
+        extra_kwargs = {"cart": {"read_only": True}}

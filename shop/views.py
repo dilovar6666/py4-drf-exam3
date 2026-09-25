@@ -1,7 +1,18 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.exceptions import ValidationError
+from rest_framework.generics import (
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveAPIView,
+    RetrieveDestroyAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
+from rest_framework.permissions import IsAuthenticated
 
 from .filters import filter_part_compatibilities, filter_spare_parts
 from .models import (
+    Cart,
+    CartItem,
+    Favorite,
     PartBrand,
     PartCompatibility,
     ProductCategory,
@@ -9,6 +20,9 @@ from .models import (
     SparePartImage,
 )
 from .serializers import (
+    CartItemSerializer,
+    CartSerializer,
+    FavoriteSerializer,
     PartBrandSerializer,
     PartCompatibilitySerializer,
     ProductCategorySerializer,
@@ -96,3 +110,64 @@ class PartCompatibilityListView(ListAPIView):
 class PartCompatibilityDetailView(RetrieveAPIView):
     queryset = PartCompatibility.objects.all()
     serializer_class = PartCompatibilitySerializer
+
+
+class FavoriteListCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = FavoriteSerializer
+
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        spare_part = serializer.validated_data["spare_part"]
+
+        if Favorite.objects.filter(
+            user=self.request.user,
+            spare_part=spare_part,
+        ).exists():
+            raise ValidationError("This spare part is already in favorites.")
+
+        serializer.save(user=self.request.user)
+
+
+class FavoriteDetailView(RetrieveDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = FavoriteSerializer
+
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)
+
+
+class CartListCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CartSerializer
+
+    def get_queryset(self):
+        return Cart.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        if Cart.objects.filter(user=self.request.user).exists():
+            raise ValidationError("The user already has a cart.")
+
+        serializer.save(user=self.request.user)
+
+
+class CartItemListCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CartItemSerializer
+
+    def get_queryset(self):
+        return CartItem.objects.filter(cart__user=self.request.user)
+
+    def perform_create(self, serializer):
+        cart, _ = Cart.objects.get_or_create(user=self.request.user)
+        serializer.save(cart=cart)
+
+
+class CartItemDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CartItemSerializer
+
+    def get_queryset(self):
+        return CartItem.objects.filter(cart__user=self.request.user)

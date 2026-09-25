@@ -6,7 +6,9 @@ from .models import CustomUser, UserCar
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
-    pass
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {"fields": ("email",)}),
+    )
 
 
 @admin.register(UserCar)
