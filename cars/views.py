@@ -1,5 +1,13 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
+from .filters import (
+    filter_car_models,
+    filter_car_parts,
+    filter_cars,
+    filter_part_sources,
+    filter_part_specifications,
+    filter_related_car_parts,
+)
 from .models import (
     Car,
     CarBrand,
@@ -23,8 +31,11 @@ from .serializers import (
 
 
 class CarListView(ListAPIView):
-    queryset = Car.objects.all()
     serializer_class = CarSerializer
+
+    def get_queryset(self):
+        queryset = Car.objects.all()
+        return filter_cars(queryset, self.request)
 
 
 class CarDetailView(RetrieveAPIView):
@@ -43,8 +54,11 @@ class CarBrandDetailView(RetrieveAPIView):
 
 
 class CarModelListView(ListAPIView):
-    queryset = CarModel.objects.all()
     serializer_class = CarModelSerializer
+
+    def get_queryset(self):
+        queryset = CarModel.objects.all()
+        return filter_car_models(queryset, self.request)
 
 
 class CarModelDetailView(RetrieveAPIView):
@@ -63,8 +77,11 @@ class PartCategoryDetailView(RetrieveAPIView):
 
 
 class CarPartListView(ListAPIView):
-    queryset = CarPart.objects.all()
     serializer_class = CarPartSerializer
+
+    def get_queryset(self):
+        queryset = CarPart.objects.all()
+        return filter_car_parts(queryset, self.request)
 
 
 class CarPartDetailView(RetrieveAPIView):
@@ -89,8 +106,11 @@ class CarPartByComponentDetailView(RetrieveAPIView):
 
 
 class PartSpecificationListView(ListAPIView):
-    queryset = PartSpecification.objects.all()
     serializer_class = PartSpecificationSerializer
+
+    def get_queryset(self):
+        queryset = PartSpecification.objects.all()
+        return filter_part_specifications(queryset, self.request)
 
 
 class PartSpecificationDetailView(RetrieveAPIView):
@@ -108,8 +128,11 @@ class CarPartSpecificationListView(ListAPIView):
 
 
 class RelatedCarPartListView(ListAPIView):
-    queryset = RelatedCarPart.objects.all()
     serializer_class = RelatedCarPartSerializer
+
+    def get_queryset(self):
+        queryset = RelatedCarPart.objects.all()
+        return filter_related_car_parts(queryset, self.request)
 
 
 class RelatedCarPartDetailView(RetrieveAPIView):
@@ -125,8 +148,11 @@ class CarPartRelatedListView(ListAPIView):
 
 
 class PartSourceListView(ListAPIView):
-    queryset = PartSource.objects.all()
     serializer_class = PartSourceSerializer
+
+    def get_queryset(self):
+        queryset = PartSource.objects.all()
+        return filter_part_sources(queryset, self.request)
 
 
 class PartSourceDetailView(RetrieveAPIView):

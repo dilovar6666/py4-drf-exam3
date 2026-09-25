@@ -1,5 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
+from .filters import filter_part_compatibilities, filter_spare_parts
 from .models import (
     PartBrand,
     PartCompatibility,
@@ -37,8 +38,11 @@ class ProductCategoryDetailView(RetrieveAPIView):
 
 
 class SparePartListView(ListAPIView):
-    queryset = SparePart.objects.all()
     serializer_class = SparePartSerializer
+
+    def get_queryset(self):
+        queryset = SparePart.objects.all()
+        return filter_spare_parts(queryset, self.request)
 
 
 class SparePartDetailView(RetrieveAPIView):
@@ -82,8 +86,11 @@ class SparePartImageByPartListView(ListAPIView):
 
 
 class PartCompatibilityListView(ListAPIView):
-    queryset = PartCompatibility.objects.all()
     serializer_class = PartCompatibilitySerializer
+
+    def get_queryset(self):
+        queryset = PartCompatibility.objects.all()
+        return filter_part_compatibilities(queryset, self.request)
 
 
 class PartCompatibilityDetailView(RetrieveAPIView):
