@@ -44,16 +44,6 @@ class PartCategoryAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
-class PartSpecificationInline(admin.TabularInline):
-    model = PartSpecification
-    extra = 0
-
-
-class PartSourceInline(admin.TabularInline):
-    model = PartSource
-    extra = 0
-
-
 @admin.register(CarPart)
 class CarPartAdmin(admin.ModelAdmin):
     list_display = ("car", "name", "component_id", "category")
@@ -65,7 +55,6 @@ class CarPartAdmin(admin.ModelAdmin):
         "car__car_model__brand__name",
     )
     list_select_related = ("car__car_model__brand", "category")
-    inlines = (PartSpecificationInline, PartSourceInline)
 
 
 @admin.register(PartSpecification)
