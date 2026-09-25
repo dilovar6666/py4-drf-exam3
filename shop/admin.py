@@ -24,16 +24,6 @@ class ProductCategoryAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
-class SparePartImageInline(admin.TabularInline):
-    model = SparePartImage
-    extra = 0
-
-
-class PartCompatibilityInline(admin.TabularInline):
-    model = PartCompatibility
-    extra = 0
-
-
 @admin.register(SparePart)
 class SparePartAdmin(admin.ModelAdmin):
     list_display = (
@@ -47,7 +37,6 @@ class SparePartAdmin(admin.ModelAdmin):
     list_filter = ("brand", "category", "car_part")
     search_fields = ("name", "sku", "oem_number")
     list_select_related = ("brand", "category", "car_part")
-    inlines = (SparePartImageInline, PartCompatibilityInline)
 
 
 @admin.register(SparePartImage)
@@ -78,17 +67,11 @@ class FavoriteAdmin(admin.ModelAdmin):
     list_select_related = ("user", "spare_part")
 
 
-class CartItemInline(admin.TabularInline):
-    model = CartItem
-    extra = 0
-
-
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     list_display = ("user", "created_at", "updated_at")
     search_fields = ("user__username", "user__email")
     list_select_related = ("user",)
-    inlines = (CartItemInline,)
 
 
 @admin.register(CartItem)
