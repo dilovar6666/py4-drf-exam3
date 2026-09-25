@@ -1,5 +1,6 @@
-from django.conf import settings
 from django.db import models
+
+from accounts.models import CustomUser
 
 
 class PartBrand(models.Model):
@@ -76,7 +77,7 @@ class PartCompatibility(models.Model):
 
 class Favorite(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="favorites",
     )
@@ -101,7 +102,7 @@ class Favorite(models.Model):
 
 class Cart(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="cart",
     )
