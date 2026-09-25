@@ -1,10 +1,11 @@
-from django.conf import settings
 from django.db import models
+
+from accounts.models import CustomUser
 
 
 class AIConversation(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="ai_conversations",
     )
