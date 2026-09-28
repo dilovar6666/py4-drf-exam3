@@ -1,4 +1,3 @@
-from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -72,7 +71,7 @@ class UserCarSerializer(serializers.ModelSerializer):
 
 class RegisterSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=150)
-    password = serializers.CharField(write_only=True, validators=[validate_password])
+    password = serializers.CharField(write_only=True)
 
     def validate_email(self, value):
         email = value.strip().lower()

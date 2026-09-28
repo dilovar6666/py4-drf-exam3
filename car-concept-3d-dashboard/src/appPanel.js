@@ -133,7 +133,7 @@ function createShell() {
           <div id="profile-card"></div>
           <div id="auth-forms" class="auth-columns">
             <form id="login-form" class="data-form"><h4>LOGIN</h4><label>EMAIL<input name="email" type="email" autocomplete="email" required></label><label>PASSWORD<input name="password" type="password" autocomplete="current-password" required></label><button type="submit">LOGIN</button></form>
-            <form id="register-form" class="data-form"><h4>REGISTER</h4><label>EMAIL<input name="email" type="email" autocomplete="email" required></label><label>PASSWORD<input name="password" type="password" autocomplete="new-password" minlength="8" required></label><button type="submit">SEND VERIFICATION CODE</button></form>
+            <form id="register-form" class="data-form"><h4>REGISTER</h4><label>EMAIL<input name="email" type="email" autocomplete="email" required></label><label>PASSWORD<input name="password" type="password" autocomplete="new-password" required></label><button type="submit">SEND VERIFICATION CODE</button></form>
             <form id="verify-form" class="data-form" hidden><h4>VERIFY EMAIL</h4><label>EMAIL<input name="email" type="email" autocomplete="email" required></label><label>6-DIGIT CODE<input name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required></label><button type="submit">VERIFY EMAIL</button></form>
           </div>
         </section>

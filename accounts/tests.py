@@ -60,6 +60,14 @@ def create_spare_part(name="Test Part"):
     SIMPLE_JWT=TEST_JWT_SETTINGS,
 )
 class AuthenticationTests(APITestCase):
+    def test_registration_accepts_short_password_without_strength_policy(self):
+        response = self.client.post(
+            reverse("register"),
+            {"email": "short-password@example.com", "password": "x"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_registration_verification_jwt_refresh_and_profile(self):
         email = "new-user@example.com"
         password = "StrongPassword123!"

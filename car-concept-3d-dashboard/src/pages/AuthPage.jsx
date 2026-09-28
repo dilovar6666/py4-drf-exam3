@@ -28,7 +28,7 @@ export default function AuthPage({ register = false }) {
   }
   return <main className="page profile-page"><header className="page-heading"><p className="eyebrow">Auto Anatomy</p><h1>{verify ? t("verifyEmail") : register ? t("register") : t("signIn")}</h1><p>{t("signInDescription")}</p></header>
     <form className="profile-form" onSubmit={submit}><FormField label={t("email")}><input type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} /></FormField>
-      {!verify && <FormField label={t("password")}><input type="password" autoComplete={register ? "new-password" : "current-password"} minLength={8} required value={password} onChange={(e) => setPassword(e.target.value)} /></FormField>}
+      {!verify && <FormField label={t("password")}><input type="password" autoComplete={register ? "new-password" : "current-password"} required value={password} onChange={(e) => setPassword(e.target.value)} /></FormField>}
       {verify && <FormField label={t("verificationCode")}><input inputMode="numeric" pattern="[0-9]{6}" required value={code} onChange={(e) => setCode(e.target.value)} /></FormField>}
       {notice && <p role="status">{notice}</p>}<Button disabled={pending}>{pending ? t("loading") : verify ? t("verifyEmail") : register ? t("register") : t("signIn")}</Button>
       <p>{register ? <Link to="/login" state={location.state}>{t("signIn")}</Link> : <Link to="/register" state={location.state}>{t("register")}</Link>}</p></form></main>;

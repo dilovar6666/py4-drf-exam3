@@ -493,6 +493,19 @@ export function createVehicleScene(
       controls.update();
       dirty = true;
     },
+    zoomCameraBy(distanceFactor) {
+      if (!model || preview || !Number.isFinite(distanceFactor)) return;
+      focusTween?.kill();
+      focusTween = null;
+      storyPaused = true;
+      const offset = camera.position.clone().sub(controls.target);
+      const spherical = new THREE.Spherical().setFromVector3(offset);
+      spherical.radius = THREE.MathUtils.clamp(spherical.radius * distanceFactor, 1.2, 18);
+      camera.position.setFromSpherical(spherical).add(controls.target);
+      camera.lookAt(controls.target);
+      controls.update();
+      dirty = true;
+    },
     getInteractionState: () => ({
       selectedComponentId: selected,
       hoveredComponentId: hovered,
