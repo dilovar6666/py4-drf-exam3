@@ -5,6 +5,7 @@ const port = Number(process.argv[2] || 9222);
 const outputPath = process.argv[3] || null;
 const screenshotsDirectory = process.argv[4] || null;
 const mobile = process.argv[5] === 'mobile';
+const selectedCarId = Number(process.argv[6] || 0);
 const endpoint = `http://127.0.0.1:${port}`;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -94,6 +95,11 @@ await client.send('Emulation.setDeviceMetricsOverride', {
   screenWidth: mobile ? 390 : 1440,
   screenHeight: mobile ? 844 : 900
 });
+if (selectedCarId > 0) {
+  await client.send('Page.addScriptToEvaluateOnNewDocument', {
+    source: `localStorage.setItem('auto_anatomy_selected_car_id', ${JSON.stringify(String(selectedCarId))});`
+  });
+}
 await client.send('Page.navigate', { url: 'http://127.0.0.1:4173/?perf=1' });
 
 async function evaluate(expression, awaitPromise = true) {
@@ -169,6 +175,70 @@ const states = [];
 const validation = {};
 states.push(await captureState('intro'));
 
+validation.explodeInterpolation = await evaluate(`(() => {
+  const api = window.__AUTO_ANATOMY_3D__;
+  const snapshot = () => Object.fromEntries(api.getComponentTransforms().map((component) => [component.componentId, component]));
+  const maxDelta = (left, right) => Math.max(...left.map((value, index) => Math.abs(value - right[index])));
+  api.setExplodeProgress(0);
+  const assembled = snapshot();
+  api.setExplodeProgress(0.01);
+  const onePercent = snapshot();
+  api.setExplodeProgress(1);
+  const exploded = snapshot();
+  api.setExplodeProgress(0.01);
+  const onePercentAgain = snapshot();
+  api.setExplodeProgress(0);
+  const restored = snapshot();
+  const components = Object.values(assembled).map((component) => {
+    const id = component.componentId;
+    const expectedOnePercent = component.originalPosition.map((value, index) => value + (component.explodedPosition[index] - value) * 0.01);
+    return {
+      componentId: id,
+      category: component.category,
+      system: component.system,
+      layer: component.layer,
+      meshCount: api.components.find((entry) => entry.componentId === id)?.meshCount || 0,
+      displacement: Math.hypot(...component.explodedPosition.map((value, index) => value - component.originalPosition[index])),
+      onePercentError: maxDelta(onePercent[id].position, expectedOnePercent),
+      deterministicError: maxDelta(onePercent[id].position, onePercentAgain[id].position),
+      restoreError: maxDelta(restored[id].position, component.originalPosition),
+      explodedError: maxDelta(exploded[id].position, component.explodedPosition)
+    };
+  });
+  const layeredSystems = components
+    .filter((component) => component.layer > 0)
+    .reduce((groups, component) => {
+      (groups[component.system] ||= []).push(component);
+      return groups;
+    }, {});
+  const hierarchy = Object.entries(layeredSystems).map(([system, members]) => {
+    const ordered = members.slice().sort((left, right) => left.layer - right.layer);
+    return {
+      system,
+      members: ordered.map(({ componentId, layer, displacement }) => ({ componentId, layer, displacement })),
+      outwardOrder: ordered.every((member, index) => index === 0 || member.displacement > ordered[index - 1].displacement)
+    };
+  });
+  return {
+    components,
+    hierarchy,
+    hierarchyPass: hierarchy.every((system) => system.outwardOrder),
+    maxOnePercentError: Math.max(...components.map((component) => component.onePercentError)),
+    maxDeterministicError: Math.max(...components.map((component) => component.deterministicError)),
+    maxRestoreError: Math.max(...components.map((component) => component.restoreError)),
+    maxExplodedError: Math.max(...components.map((component) => component.explodedError))
+  };
+})()`);
+validation.componentMapping = await evaluate(`(() => ({
+  configured: window.__AUTO_ANATOMY_3D__.components.map((component) => ({
+    componentId: component.componentId,
+    meshCount: component.meshCount,
+    missingNodes: component.missingNodes
+  })),
+  unassignedMeshes: window.__AUTO_ANATOMY_3D__.modelAudit.unassignedMeshes,
+  lostMeshes: window.__AUTO_ANATOMY_3D__.modelAudit.lostMeshes
+}))()`);
+
 const scrollFrames = await evaluate(`new Promise((resolve) => {
   const samples = [];
   const duration = 2400;
@@ -240,10 +310,27 @@ await waitFor('!window.__AUTO_ANATOMY_3D__.getInteractionState().selectedCompone
 await waitFor('!window.__AUTO_ANATOMY_3D__.getInteractionState().interactionLocked');
 const componentIds = await evaluate('window.__AUTO_ANATOMY_3D__.availableComponents');
 validation.componentFocus = [];
+validation.pointerMapping = [];
 for (const componentId of componentIds) {
-  await evaluate(`document.querySelector('[data-component-id="${componentId}"]').click()`);
+  const target = mobile ? null : await evaluate(`window.__AUTO_ANATOMY_3D__.getLabPointerTargets().find((entry) => entry.componentId === '${componentId}')?.target || null`);
+  let hoveredComponentId = null;
+  if (target) {
+    await client.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: target.x, y: target.y });
+    await waitFor(`window.__AUTO_ANATOMY_3D__.getInteractionState().hoveredComponentId === '${componentId}'`);
+    hoveredComponentId = await evaluate('window.__AUTO_ANATOMY_3D__.getInteractionState().hoveredComponentId');
+    await client.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: target.x, y: target.y, button: 'left', clickCount: 1 });
+    await client.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: target.x, y: target.y, button: 'left', clickCount: 1 });
+  } else {
+    await evaluate(`document.querySelector('[data-component-id="${componentId}"]').click()`);
+  }
   await waitFor(`window.__AUTO_ANATOMY_3D__.getInteractionState().selectedComponentId === '${componentId}'`);
   await waitFor('!window.__AUTO_ANATOMY_3D__.getInteractionState().interactionLocked');
+  validation.pointerMapping.push({
+    componentId,
+    targetFound: Boolean(target),
+    hoveredComponentId,
+    clickedComponentId: await evaluate('window.__AUTO_ANATOMY_3D__.getInteractionState().selectedComponentId')
+  });
   validation.componentFocus.push({
     componentId,
     camera: await evaluate('window.__AUTO_ANATOMY_3D__.getCameraState()')
@@ -256,6 +343,12 @@ validation.labExhibits = await evaluate('window.__AUTO_ANATOMY_3D__.verifyLabExh
 
 const result = {
   timestamp: new Date().toISOString(),
+  runtime: await evaluate(`({
+    modelId: window.__AUTO_ANATOMY_3D__.modelId,
+    modelPath: window.__AUTO_ANATOMY_3D__.modelPath,
+    selectedCarId: Number(localStorage.getItem('auto_anatomy_selected_car_id')),
+    selectedCarLabel: document.querySelector('#selected-car-label').textContent.trim()
+  })`),
   states,
   validation,
   errors: [...new Set(errors)],

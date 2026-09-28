@@ -50,7 +50,7 @@ export class AdaptiveQualityController {
 
   applyRendererHint(rendererName = '') {
     const renderer = rendererName.toLowerCase();
-    if (/swiftshader|intel|mali|adreno|powervr/.test(renderer)) {
+    if (/swiftshader|basic render driver|intel|mali|adreno|powervr/.test(renderer)) {
       this.profileName = 'low';
     } else if (window.devicePixelRatio >= 2 && this.profileName === 'high') {
       this.profileName = 'medium';

@@ -1,5 +1,6 @@
 from django.contrib.auth.hashers import check_password
 from django.core import mail
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import override_settings
 from django.urls import reverse
 from rest_framework import status
@@ -10,7 +11,7 @@ from ai.models import AIConversation, AIMessage
 from cars.models import Car, CarBrand, CarModel
 from shop.models import Cart, CartItem, Favorite, PartBrand, ProductCategory, SparePart
 
-from .models import CustomUser, EmailVerification, UserCar
+from .models import CustomUser, EmailVerification, GarageCar, Profile, UserCar
 
 
 TEST_JWT_SETTINGS = {
@@ -247,8 +248,8 @@ class UserDataIsolationTests(APITestCase):
             },
             format="json",
         )
-        self.assertEqual(message_response.status_code, status.HTTP_201_CREATED)
-        message = AIMessage.objects.get(id=message_response.data["id"])
+        self.assertEqual(message_response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        message = AIMessage.objects.create(conversation=conversation, role=AIMessage.Role.USER, content="User A message")
         self.assertEqual(message.conversation, conversation)
 
         patch_response = self.client.patch(
@@ -284,3 +285,48 @@ class UserDataIsolationTests(APITestCase):
         self.assertEqual(message_delete.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(conversation_delete.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(cart_delete.status_code, status.HTTP_204_NO_CONTENT)
+
+
+class ProfileGarageApiTests(APITestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create_user(
+            username="garage-user", email="garage@example.com", password="test-pass-123"
+        )
+        self.other = CustomUser.objects.create_user(
+            username="other-user", email="other@example.com", password="test-pass-123"
+        )
+        self.client.force_authenticate(self.user)
+
+    def test_profile_language_can_be_updated_and_user_flags_are_read_only(self):
+        response = self.client.patch(
+            reverse("profile"), {"preferred_language": "tg", "is_staff": True}, format="json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["preferred_language"], "tg")
+        self.assertFalse(response.data["is_staff"])
+        self.assertFalse(self.user.is_staff)
+
+    def test_garage_upload_is_owned_and_does_not_accept_arbitrary_files(self):
+        invalid = SimpleUploadedFile("car.glb", b"glTF", content_type="model/gltf-binary")
+        rejected = self.client.post(
+            reverse("garage-list"),
+            {"photo": invalid, "brand": "Lada", "model": "2105", "year": 1984},
+            format="multipart",
+        )
+        self.assertEqual(rejected.status_code, status.HTTP_400_BAD_REQUEST)
+
+        image = SimpleUploadedFile(
+            "car.png", b"\x89PNG\r\n\x1a\nsmall-test-image", content_type="image/png"
+        )
+        created = self.client.post(
+            reverse("garage-list"),
+            {"photo": image, "brand": "Lada", "model": "2105", "year": 1984},
+            format="multipart",
+        )
+        self.assertEqual(created.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(GarageCar.objects.get().user, self.user)
+        self.client.force_authenticate(self.other)
+        self.assertEqual(
+            self.client.get(reverse("garage-detail", args=[created.data["id"]])).status_code,
+            status.HTTP_404_NOT_FOUND,
+        )

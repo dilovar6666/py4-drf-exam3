@@ -5,10 +5,14 @@ from .views import (
     AIConversationListCreateView,
     AIMessageDetailView,
     AIMessageListCreateView,
+    AskView,
+    VoiceView,
 )
 
 
 urlpatterns = [
+    path("ask/", AskView.as_view(), name="ai-ask"),
+    path("voice/", VoiceView.as_view(), name="ai-voice"),
     path(
         "conversations/",
         AIConversationListCreateView.as_view(),

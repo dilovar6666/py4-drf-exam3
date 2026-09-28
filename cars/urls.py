@@ -1,31 +1,10 @@
 from django.urls import path
 
-from .views import (
-    CarBrandDetailView,
-    CarBrandListView,
-    CarDetailView,
-    CarListView,
-    CarModelDetailView,
-    CarModelListView,
-    CarPartByCarListView,
-    CarPartByComponentDetailView,
-    CarPartDetailView,
-    CarPartListView,
-    CarPartRelatedListView,
-    CarPartSourceListView,
-    CarPartSpecificationListView,
-    PartCategoryDetailView,
-    PartCategoryListView,
-    PartSourceDetailView,
-    PartSourceListView,
-    PartSpecificationDetailView,
-    PartSpecificationListView,
-    RelatedCarPartDetailView,
-    RelatedCarPartListView,
-)
+from .views import *
 
 
 urlpatterns = [
+    path("<int:car_id>/cinematic/", CinematicCarConfigView.as_view(), name="car-cinematic-config"),
     path("", CarListView.as_view(), name="car-list"),
     path("<int:pk>/", CarDetailView.as_view(), name="car-detail"),
     path("brands/", CarBrandListView.as_view(), name="car-brand-list"),

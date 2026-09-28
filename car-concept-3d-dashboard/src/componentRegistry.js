@@ -5,6 +5,7 @@ export class ComponentRegistry {
     this.model = model;
     this.modelConfig = modelConfig;
     this.components = new Map();
+    this.assemblies = new Map();
   }
 
   register(component) {

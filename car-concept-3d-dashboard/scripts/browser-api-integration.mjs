@@ -1,5 +1,6 @@
 const debugPort = Number(process.argv[2] || 9222);
 const frontendUrl = process.argv[3] || 'http://127.0.0.1:4173/';
+const selectedCarId = Number(process.argv[4] || 0);
 const endpoint = `http://127.0.0.1:${debugPort}`;
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
@@ -74,6 +75,19 @@ await Promise.all([
   client.send('Runtime.enable'),
   client.send('Network.enable')
 ]);
+if (selectedCarId > 0) {
+  await client.send('Page.addScriptToEvaluateOnNewDocument', {
+    source: `localStorage.setItem('auto_anatomy_selected_car_id', ${JSON.stringify(String(selectedCarId))});`
+  });
+}
+await client.send('Emulation.setDeviceMetricsOverride', {
+  width: 1440,
+  height: 900,
+  deviceScaleFactor: 2,
+  mobile: false,
+  screenWidth: 1440,
+  screenHeight: 900
+});
 
 async function evaluate(expression) {
   const result = await client.send('Runtime.evaluate', {
@@ -101,6 +115,36 @@ await waitFor("!document.body.classList.contains('is-loading')");
 await waitFor("document.querySelectorAll('#cars-grid .data-card').length > 0");
 await waitFor("document.querySelectorAll('#shop-grid .data-card').length > 0");
 
+await evaluate("window.scrollTo(0, document.documentElement.scrollHeight); document.querySelector('#enter-lab').click()");
+await waitFor('window.__AUTO_ANATOMY_3D__.getInteractionState().labActive');
+let steeringHoverComponentId = null;
+let steeringClickComponentId = null;
+for (const [x, y] of [[1045, 548], [1045, 565], [1045, 585], [1060, 555], [1030, 555]]) {
+  await client.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x, y });
+  await sleep(120);
+  steeringHoverComponentId = await evaluate('window.__AUTO_ANATOMY_3D__.getInteractionState().hoveredComponentId');
+  if (steeringHoverComponentId === 'steering_wheel') {
+    await client.send('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'left', clickCount: 1 });
+    await client.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'left', clickCount: 1 });
+    await waitFor("window.__AUTO_ANATOMY_3D__.getInteractionState().selectedComponentId === 'steering_wheel'");
+    steeringClickComponentId = await evaluate('window.__AUTO_ANATOMY_3D__.getInteractionState().selectedComponentId');
+    await waitFor('!window.__AUTO_ANATOMY_3D__.getInteractionState().interactionLocked');
+    await evaluate("document.querySelector('#back-to-lab').click()");
+    await waitFor('!window.__AUTO_ANATOMY_3D__.getInteractionState().selectedComponentId');
+    await waitFor('!window.__AUTO_ANATOMY_3D__.getInteractionState().interactionLocked');
+    break;
+  }
+}
+
+const orbitBefore = await evaluate('window.__AUTO_ANATOMY_3D__.getCameraState()');
+await client.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 760, y: 220 });
+await client.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: 760, y: 220, button: 'left', buttons: 1, clickCount: 1 });
+await client.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 850, y: 260, button: 'left', buttons: 1 });
+await client.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: 850, y: 260, button: 'left', buttons: 0, clickCount: 1 });
+await sleep(350);
+const orbitAfter = await evaluate('window.__AUTO_ANATOMY_3D__.getCameraState()');
+const orbitControlsMoved = orbitBefore.position.some((value, index) => Math.abs(value - orbitAfter.position[index]) > 0.0001);
+
 const result = await evaluate(`(async () => {
   document.querySelector('[data-open-data="cars"]').click();
   await new Promise((resolve) => requestAnimationFrame(resolve));
@@ -108,9 +152,10 @@ const result = await evaluate(`(async () => {
   const cars = await carsResponse.json();
   const selectedText = document.querySelector('#selected-car-label').textContent.trim();
   const selectedId = Number(localStorage.getItem('auto_anatomy_selected_car_id'));
-  const carPartsResponse = await fetch(window.__AUTO_ANATOMY_CONFIG__.apiUrl + '/api/cars/' + selectedId + '/parts/');
+  const carPartsResponse = await fetch(window.__AUTO_ANATOMY_CONFIG__.apiUrl + '/api/cars/' + selectedId + '/parts/?page_size=100');
   const carParts = await carPartsResponse.json();
   const profileResponse = await fetch(window.__AUTO_ANATOMY_CONFIG__.apiUrl + '/api/auth/profile/');
+  const legacyFallbackResponse = await fetch('./CarConcept.glb', { method: 'HEAD' });
   return {
     panelOpen: document.querySelector('#data-panel').classList.contains('is-open'),
     apiUrl: window.__AUTO_ANATOMY_CONFIG__.apiUrl,
@@ -124,7 +169,8 @@ const result = await evaluate(`(async () => {
     componentIds: carParts.results.map((part) => part.component_id),
     guestProfileStatus: profileResponse.status,
     activeModelPath: window.__AUTO_ANATOMY_3D__.modelPath,
-    fallbackModelPreserved: window.__AUTO_ANATOMY_3D__.modelPath === './CarConcept.glb'
+    audiModelActive: /\\/assets\\/models\\/AudiR8\\.glb$/.test(new URL(window.__AUTO_ANATOMY_3D__.modelPath, location.href).pathname),
+    legacyFallbackAvailable: legacyFallbackResponse.ok
   };
 })()`);
 
@@ -198,6 +244,9 @@ if (testEmail && testPassword) {
 
 const report = {
   ...result,
+  orbitControlsMoved,
+  steeringHoverComponentId,
+  steeringClickComponentId,
   protectedFlow,
   corsRequestsObserved: apiResponses.length,
   apiStatuses: [...new Set(apiResponses.map((entry) => entry.status))],
@@ -210,9 +259,12 @@ const assertions = {
   catalogLoaded: report.carsStatus === 200 && report.carsPaginated && report.renderedCars > 0,
   shopLoaded: report.renderedSpareParts > 0,
   selectedCarLoaded: report.selectedCarId > 0 && report.selectedCarLabel !== 'NOT SELECTED',
-  carPartsLoaded: report.carPartsStatus === 200 && report.componentIds.length > 0,
+  carPartsLoaded: report.carPartsStatus === 200 && report.componentIds.length === 74,
   protectedEndpointProtected: report.guestProfileStatus === 401,
-  modelFallbackSafe: report.fallbackModelPreserved,
+  audiModelActive: report.audiModelActive,
+  legacyFallbackAvailable: report.legacyFallbackAvailable,
+  orbitControls: report.orbitControlsMoved,
+  steeringPointerMapping: report.steeringHoverComponentId === 'steering_wheel' && report.steeringClickComponentId === 'steering_wheel',
   browserClean: report.exceptions.length === 0 && report.failedRequests.length === 0,
   protectedFlow: !report.protectedFlow || Object.values(report.protectedFlow).every(Boolean)
 };

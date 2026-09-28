@@ -1,0 +1,32 @@
+import fs from "node:fs";
+const qaUser = JSON.parse(fs.readFileSync("../.ux_qa_tokens.json", "utf8")).user;
+const target = (await fetch("http://127.0.0.1:9222/json").then((response) => response.json())).find((row) => row.type === "page");
+const socket = new WebSocket(target.webSocketDebuggerUrl);
+await new Promise((resolve) => socket.addEventListener("open", resolve, { once: true }));
+let id = 0;
+const pending = new Map();
+socket.addEventListener("message", (event) => { const data = JSON.parse(event.data); if (data.id && pending.has(data.id)) { const item = pending.get(data.id); pending.delete(data.id); data.error ? item.reject(data.error) : item.resolve(data.result); } });
+function send(method, params = {}) { const current = ++id; return new Promise((resolve, reject) => { pending.set(current, { resolve, reject }); socket.send(JSON.stringify({ id: current, method, params })); }); }
+async function evalJS(expression) { const result = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true, userGesture: true }); if (result.exceptionDetails) throw new Error(result.exceptionDetails.text); return result.result.value; }
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+await send("Runtime.enable"); await send("Page.enable");
+await send("Page.navigate", { url: "http://127.0.0.1:4174/" }); await sleep(350);
+await evalJS("localStorage.removeItem('auto_anatomy_access_token');localStorage.removeItem('auto_anatomy_refresh_token')");
+await send("Page.navigate", { url: "http://127.0.0.1:4174/store" }); await sleep(650);
+const before = await evalJS("({path:location.pathname,from:history.state?.usr?.from})");
+await evalJS(`(()=>{for(const [selector,value] of [['input[type=email]',${JSON.stringify(qaUser.email)}],['input[type=password]',${JSON.stringify(qaUser.password)}]]){const el=document.querySelector(selector);Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(el,value);el.dispatchEvent(new Event('input',{bubbles:true}));}})()`);
+await evalJS("document.querySelector('form button').click()");
+await sleep(1500);
+const after = await evalJS("({path:location.pathname,nav:[...document.querySelectorAll('.site-nav nav a')].map(a=>a.textContent.trim()),logout:!!document.querySelector('.nav-logout')})");
+await evalJS("document.querySelector('.nav-logout').click()"); await sleep(450);
+await send("Page.navigate", { url: "http://127.0.0.1:4174/store" }); await sleep(650);
+const logout = await evalJS(`({path:location.pathname,privateNav:!!document.querySelector('.site-nav a[href="/store"]')})`);
+await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+await send("Page.navigate", { url: "http://127.0.0.1:4174/about" }); await sleep(550);
+await evalJS("document.querySelector('.nav-menu-toggle').click()");
+const mobile = await evalJS("({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,menuOpen:document.querySelector('.nav-menu-toggle').getAttribute('aria-expanded'),navVisible:getComputedStyle(document.querySelector('.site-nav nav')).display,footer:!!document.querySelector('.site-footer')})");
+fs.mkdirSync("qa/ux-runtime", { recursive: true });
+fs.writeFileSync("qa/ux-runtime/mobile-info.png", Buffer.from((await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: false })).data, "base64"));
+await send("Emulation.clearDeviceMetricsOverride");
+console.log(JSON.stringify({ before, after, logout, mobile }, null, 2));
+socket.close();

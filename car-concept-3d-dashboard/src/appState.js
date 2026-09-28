@@ -54,7 +54,7 @@ export async function selectCar(car, { notify = true } = {}) {
   state.selectedCar = car;
   if (car) {
     const [partsPayload, categories] = await Promise.all([
-      api.carParts(car.id),
+      api.carParts(car.id, { page_size: 100 }),
       getPartCategories()
     ]);
     state.carParts = pageResults(partsPayload).map((part) => ({

@@ -1,46 +1,41 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from .filters import (
-    filter_car_models,
-    filter_car_parts,
-    filter_cars,
-    filter_part_sources,
-    filter_part_specifications,
-    filter_related_car_parts,
-)
-from .models import (
-    Car,
-    CarBrand,
-    CarModel,
-    CarPart,
-    PartCategory,
-    PartSource,
-    PartSpecification,
-    RelatedCarPart,
-)
-from .serializers import (
-    CarBrandSerializer,
-    CarModelSerializer,
-    CarPartSerializer,
-    CarSerializer,
-    PartCategorySerializer,
-    PartSourceSerializer,
-    PartSpecificationSerializer,
-    RelatedCarPartSerializer,
-)
+from .filters import *
+from .models import *
+from .serializers import *
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 
 
 class CarListView(ListAPIView):
     serializer_class = CarSerializer
 
     def get_queryset(self):
-        queryset = Car.objects.all().order_by("id")
+        queryset = Car.objects.filter(is_active=True).order_by("id")
         return filter_cars(queryset, self.request)
 
 
 class CarDetailView(RetrieveAPIView):
-    queryset = Car.objects.all()
+    queryset = Car.objects.filter(is_active=True)
     serializer_class = CarSerializer
+
+
+class CinematicCarConfigView(APIView):
+
+    def get(self, request, car_id):
+        car = get_object_or_404(Car, pk=car_id, is_active=True)
+        config = CinematicCarConfig.objects.filter(car=car).first()
+        if config:
+            return Response(CinematicCarConfigSerializer(config).data)
+        categories = set(car.parts.select_related("category").values_list("category__name", flat=True))
+        sections = [{"id": "intro", "title": "Introduction"}, {"id": "design", "title": "Design"}]
+        if "ENGINE" in categories:
+            sections.append({"id": "engine", "title": "Engine and performance", "category": "ENGINE"})
+        if "INTERIOR" in categories:
+            sections.append({"id": "interior", "title": "Interior", "category": "INTERIOR"})
+        sections.extend([{"id": "anatomy", "title": "Anatomy"}, {"id": "specifications", "title": "Specifications"}, {"id": "store", "title": "Store"}])
+        return Response({"camera_presets": {}, "story_sections": sections, "background": "light"})
 
 
 class CarBrandListView(ListAPIView):

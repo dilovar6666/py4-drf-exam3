@@ -30,6 +30,14 @@ function findNodesByName(root, name) {
   return matches;
 }
 
+function findNodesForComponent(root, componentId, names) {
+  const annotated = [];
+  root.traverse((object) => {
+    if (object.userData?.componentId === componentId) annotated.push(object);
+  });
+  return annotated.length ? annotated : names.flatMap((name) => findNodesByName(root, name));
+}
+
 function removeNestedSelections(objects) {
   const selected = new Set(objects);
   return objects.filter((object) => {
@@ -158,7 +166,7 @@ function buildComponentRegistry(model, modelConfig, normalizationInfo, sourceMes
     const missingNodes = [];
 
     configuredNodeNames.forEach((nodeName) => {
-      const matches = findNodesByName(model, nodeName);
+      const matches = findNodesForComponent(model, componentId, [nodeName]);
       if (!matches.length) missingNodes.push(nodeName);
       else {
         if (matches.length > 1) {
@@ -203,6 +211,30 @@ function buildComponentRegistry(model, modelConfig, normalizationInfo, sourceMes
     const modelSpan = Math.max(normalizationInfo.size.x, normalizationInfo.size.y, normalizationInfo.size.z);
     const distance = modelSpan * (explode.distanceFactor || 0) + componentSpan * (explode.sizeFactor ?? 0.05);
     const localOffset = worldOffsetToParentDelta(object3D, direction.multiplyScalar(distance));
+
+    if (explode.assemblyId) {
+      const assembly = object3D.parent;
+      if (!assembly) {
+        console.warn(`[Auto Anatomy] Component "${componentId}" declares assembly "${explode.assemblyId}" but has no assembly parent.`);
+      } else {
+        let state = registry.assemblies.get(explode.assemblyId);
+        if (!state) {
+          const originalPosition = assembly.position.clone();
+          const worldOffset = new THREE.Vector3(...(explode.assemblyOffset || [0, 0, 0]));
+          const parentDelta = worldOffsetToParentDelta(assembly, worldOffset);
+          state = {
+            id: explode.assemblyId,
+            object3D: assembly,
+            originalPosition,
+            explodedPosition: originalPosition.clone().add(parentDelta),
+            progressEnd: explode.assemblyProgressEnd ?? 0.5,
+          };
+          registry.assemblies.set(explode.assemblyId, state);
+        } else if (state.object3D !== assembly) {
+          console.warn(`[Auto Anatomy] Assembly "${explode.assemblyId}" resolved to multiple parent groups.`);
+        }
+      }
+    }
 
     registry.register({
       id: componentId,
@@ -253,7 +285,7 @@ function buildComponentRegistry(model, modelConfig, normalizationInfo, sourceMes
 
 export async function loadConfiguredModel(modelConfig, onProgress, debugModel = false) {
   const draco = new DRACOLoader();
-  draco.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/');
+  draco.setDecoderPath('/draco/');
   const loader = new GLTFLoader();
   loader.setDRACOLoader(draco);
 
@@ -306,11 +338,19 @@ export function applyPresentationOffset(model, modelConfig, isMobile) {
 
 export function applyExplosion(registry, progress) {
   const amount = THREE.MathUtils.clamp(progress, 0, 1);
+  registry.assemblies.forEach(({ object3D, originalPosition, explodedPosition, progressEnd }) => {
+    const stage = THREE.MathUtils.clamp(amount / Math.max(progressEnd, 1e-6), 0, 1);
+    object3D.position.lerpVectors(originalPosition, explodedPosition, stage);
+  });
   registry.values().forEach((component) => {
     const { object3D, originalTransform, explodedTransform } = component;
-    object3D.position.lerpVectors(originalTransform.position, explodedTransform.position, amount);
-    object3D.quaternion.slerpQuaternions(originalTransform.quaternion, explodedTransform.quaternion, amount);
-    object3D.scale.lerpVectors(originalTransform.scale, explodedTransform.scale, amount);
+    const componentStart = component.config.explode?.componentProgressStart;
+    const componentAmount = Number.isFinite(componentStart)
+      ? THREE.MathUtils.clamp((amount - componentStart) / Math.max(1 - componentStart, 1e-6), 0, 1)
+      : amount;
+    object3D.position.lerpVectors(originalTransform.position, explodedTransform.position, componentAmount);
+    object3D.quaternion.slerpQuaternions(originalTransform.quaternion, explodedTransform.quaternion, componentAmount);
+    object3D.scale.lerpVectors(originalTransform.scale, explodedTransform.scale, componentAmount);
   });
 }
 

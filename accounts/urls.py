@@ -16,6 +16,9 @@ from .views import (
     RegisterView,
     UserCarDetailView,
     UserCarListCreateView,
+    GarageCarDetailView,
+    GarageCarListCreateView,
+    RecentlyViewedView,
     VerifyEmailView,
 )
 
@@ -26,6 +29,9 @@ urlpatterns = [
     path("auth/login/", EmailTokenObtainPairView.as_view(), name="login"),
     path("auth/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
     path("auth/profile/", ProfileView.as_view(), name="profile"),
+    path("account/garage/", GarageCarListCreateView.as_view(), name="garage-list"),
+    path("account/garage/<int:pk>/", GarageCarDetailView.as_view(), name="garage-detail"),
+    path("account/recently-viewed/", RecentlyViewedView.as_view(), name="recently-viewed"),
     path("account/cars/", UserCarListCreateView.as_view(), name="user-car-list"),
     path(
         "account/cars/<int:pk>/",

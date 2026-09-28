@@ -12,6 +12,10 @@ env/
 *.log
 db.sqlite3
 db.sqlite3-journal
+*.sqlite3
+*.sqlite3-journal
+*.dump
+*.bak
 staticfiles/
 media/
 
@@ -19,11 +23,33 @@ media/
 .env
 .env.*
 !.env.example
+.ux_qa_tokens.json
+/.provider_live_check.py
+/.ux_qa_seed.py
 
 # Test and coverage output
 .pytest_cache/
 .coverage
 htmlcov/
+coverage/
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+
+# Local 3D sources and generated analysis. Runtime GLB assets stay tracked.
+source_models/
+car-concept-3d-dashboard/audi-r8/
+car-concept-3d-dashboard/qa/
+car-concept-3d-dashboard/assets/models/*-candidate.glb
+*.blend1
+*.blend2
+*.autosave
+
+# Temporary files
+*.tmp
+*.temp
 
 # IDE and operating system files
 .idea/

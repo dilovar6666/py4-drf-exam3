@@ -23,13 +23,17 @@ class ProductCategory(models.Model):
 class SparePart(models.Model):
     brand = models.ForeignKey(
         PartBrand,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="spare_parts",
+        null=True,
+        blank=True,
     )
     category = models.ForeignKey(
         ProductCategory,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="spare_parts",
+        null=True,
+        blank=True,
     )
     car_part = models.ForeignKey(
         "cars.CarPart",
@@ -39,9 +43,10 @@ class SparePart(models.Model):
         blank=True,
     )
     name = models.CharField(max_length=200)
-    sku = models.CharField(max_length=100)
-    oem_number = models.CharField(max_length=100)
+    sku = models.CharField(max_length=100, blank=True)
+    oem_number = models.CharField(max_length=100, blank=True)
     description = models.TextField()
+    is_draft = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.brand} {self.name}"

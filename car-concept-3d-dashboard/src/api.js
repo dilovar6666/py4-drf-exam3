@@ -1,7 +1,7 @@
 const runtimeConfig = window.__AUTO_ANATOMY_CONFIG__ || {};
 
 export const API_BASE_URL = String(
-  runtimeConfig.apiUrl || 'http://127.0.0.1:8000'
+  runtimeConfig.apiUrl || import.meta.env?.VITE_API_URL || window.location.origin
 ).replace(/\/$/, '');
 
 const TOKEN_KEYS = {
@@ -112,7 +112,8 @@ function requestUrl(path) {
 
 export async function apiRequest(path, options = {}) {
   const {
-    auth = false,
+    auth = Boolean(getAccessToken()),
+    responseType = 'json',
     retry = true,
     headers: customHeaders = {},
     body,
@@ -141,7 +142,7 @@ export async function apiRequest(path, options = {}) {
     return apiRequest(path, { ...options, retry: false });
   }
 
-  const payload = await readResponse(response);
+  const payload = response.ok && responseType === 'blob' ? await response.blob() : await readResponse(response);
   if (!response.ok) {
     if (response.status === 401 && auth) clearTokens();
     throw new ApiError(
@@ -171,13 +172,15 @@ export const api = {
   verifyEmail: (email, code) => apiRequest('/api/auth/verify-email/', { method: 'POST', body: { email, code } }),
   login: (email, password) => apiRequest('/api/auth/login/', { method: 'POST', body: { email, password } }),
   profile: () => apiRequest('/api/auth/profile/', { auth: true }),
+  updateProfile: (data) => apiRequest('/api/auth/profile/', { method: 'PATCH', auth: true, body: data }),
 
   brands: () => apiRequest('/api/cars/brands/'),
   models: (params = {}) => apiRequest(`/api/cars/models/${queryString(params)}`),
   partCategories: (params = {}) => apiRequest(`/api/cars/categories/${queryString(params)}`),
   cars: (params = {}) => apiRequest(`/api/cars/${queryString(params)}`),
   car: (id) => apiRequest(`/api/cars/${id}/`),
-  carParts: (carId) => apiRequest(`/api/cars/${carId}/parts/`),
+  cinematicCar: (id) => apiRequest(`/api/cars/${id}/cinematic/`),
+  carParts: (carId, params = {}) => apiRequest(`/api/cars/${carId}/parts/${queryString(params)}`),
   carPart: (carId, componentId) => apiRequest(`/api/cars/${carId}/parts/${encodeURIComponent(componentId)}/`),
   carPartDetail: (id) => apiRequest(`/api/cars/parts/${id}/`),
   partSpecifications: (partId) => apiRequest(`/api/cars/parts/${partId}/specifications/`),
@@ -186,6 +189,15 @@ export const api = {
   userCars: () => apiRequest('/api/account/cars/', { auth: true }),
   addUserCar: (car) => apiRequest('/api/account/cars/', { method: 'POST', auth: true, body: { car } }),
   removeUserCar: (id) => apiRequest(`/api/account/cars/${id}/`, { method: 'DELETE', auth: true }),
+  garage: () => apiRequest('/api/account/garage/', { auth: true }),
+  addGarageCar: (data) => apiRequest('/api/account/garage/', { method: 'POST', auth: true, body: data }),
+  deleteGarageCar: (id) => apiRequest(`/api/account/garage/${id}/`, { method: 'DELETE', auth: true }),
+  recentlyViewed: () => apiRequest('/api/account/recently-viewed/', { auth: true }),
+  recordRecentlyViewed: (kind, id) => apiRequest('/api/account/recently-viewed/', { method: 'POST', auth: true, body: { kind, id } }),
+  aiConversations: () => apiRequest('/api/ai/conversations/', { auth: true }),
+  askAI: (data) => apiRequest('/api/ai/ask/', { method: 'POST', auth: true, body: data }),
+  speakAI: (conversationId, language, signal) => apiRequest('/api/ai/voice/', { method: 'POST', auth: true, body: { conversation_id: conversationId, language }, responseType: 'blob', signal }),
+  searchParts: (params = {}) => apiRequest(`/api/shop/search/${queryString(params)}`),
 
   partBrands: () => apiRequest('/api/shop/brands/'),
   productCategories: () => apiRequest('/api/shop/categories/'),

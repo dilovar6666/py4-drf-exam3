@@ -16,11 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
+from .management_api import (
+    ManagementOverview, GenerateProductsFromCarParts, CarImportJobListCreateView,
+    CarImportJobDetailView, CarImportJobReviewView, CarImportJobPublishView,
+    CarImportJobRetryView, router as management_router,
+    StaffPlatformSection,
+)
 
 urlpatterns = [
+    path("api/manage/overview/", ManagementOverview.as_view(), name="manage-overview"),
+    path("api/manage/generate-products/", GenerateProductsFromCarParts.as_view(), name="manage-generate-products"),
+    path("api/manage/import-jobs/", CarImportJobListCreateView.as_view(), name="manage-import-job-list"),
+    path("api/manage/import-jobs/<int:pk>/", CarImportJobDetailView.as_view(), name="manage-import-job-detail"),
+    path("api/manage/import-jobs/<int:pk>/review/", CarImportJobReviewView.as_view(), name="manage-import-job-review"),
+    path("api/manage/import-jobs/<int:pk>/publish/", CarImportJobPublishView.as_view(), name="manage-import-job-publish"),
+    path("api/manage/import-jobs/<int:pk>/retry/", CarImportJobRetryView.as_view(), name="manage-import-job-retry"),
+    path("api/manage/platform/<slug:section>/", StaffPlatformSection.as_view(), name="manage-platform-section"),
+    path("api/manage/", include(management_router.urls)),
     path('admin/', admin.site.urls),
     path("api/", include("accounts.urls")),
     path("api/ai/", include("ai.urls")),
     path("api/cars/", include("cars.urls")),
     path("api/shop/", include("shop.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

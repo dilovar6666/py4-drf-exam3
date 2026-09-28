@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-const HOVER_EMISSIVE = new THREE.Color(0x35471f);
+const HOVER_EMISSIVE = new THREE.Color(0xf2f1ed);
 
 export function buildLabCatalog(registry, modelConfig, partsData, labSlots) {
   const catalog = [];

@@ -1,23 +1,10 @@
 from django.urls import path
 
-from .views import (
-    CompatibleSparePartByCarListView,
-    PartBrandDetailView,
-    PartBrandListView,
-    PartCompatibilityDetailView,
-    PartCompatibilityListView,
-    ProductCategoryDetailView,
-    ProductCategoryListView,
-    SparePartByCarPartListView,
-    SparePartDetailView,
-    SparePartImageByPartListView,
-    SparePartImageDetailView,
-    SparePartImageListView,
-    SparePartListView,
-)
+from .views import *
 
 
 urlpatterns = [
+    path("search/", PartsSearchView.as_view(), name="parts-search"),
     path("brands/", PartBrandListView.as_view(), name="part-brand-list"),
     path("brands/<int:pk>/", PartBrandDetailView.as_view(), name="part-brand-detail"),
     path(

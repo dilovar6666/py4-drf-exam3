@@ -60,6 +60,15 @@ class Command(BaseCommand):
                 "image_url": "https://placehold.co/1200x800?text=AMG+C63",
                 "logo_url": "https://placehold.co/300x120?text=Mercedes-Benz",
             },
+            {
+                "brand": "Audi",
+                "model": "R8",
+                "year": 2008,
+                "description": "Audi R8 prepared for the Auto Anatomy interactive 3D lab.",
+                "model_url": "http://127.0.0.1:4173/assets/models/AudiR8.glb",
+                "image_url": "https://placehold.co/1200x800?text=Audi+R8",
+                "logo_url": "https://placehold.co/300x120?text=Audi",
+            },
         ]
 
         cars = {}
@@ -94,6 +103,11 @@ class Command(BaseCommand):
             "Cooling": "Engine cooling system components.",
             "Electrical": "Electrical system components.",
             "Exhaust": "Exhaust system components.",
+            "Body": "Vehicle body panels and exterior assemblies.",
+            "Wheels": "Wheel and tyre assemblies.",
+            "Interior": "Cabin, seating, and driver controls.",
+            "Glass": "Automotive glazing components.",
+            "Lighting": "Exterior lighting assemblies.",
         }
 
         categories = {}
@@ -107,7 +121,7 @@ class Command(BaseCommand):
         return categories
 
     def create_car_parts(self, cars, categories):
-        part_data = [
+        standard_part_data = [
             ("engine", "Engine", "Engine", "Produces power for the vehicle."),
             (
                 "transmission",
@@ -143,9 +157,86 @@ class Command(BaseCommand):
                 "Supports and controls the rear wheels.",
             ),
         ]
+        audi_part_data = [
+            ("body_shell", "Body Shell", "Body", "Forms the primary exterior body surface."),
+            ("carbon_sideblades", "Carbon Sideblades", "Body", "Finishes the side air-channel area behind the cabin."),
+            ("fuel_filler_door", "Fuel Filler Door", "Body", "Closes the exterior fuel-filler opening."),
+            ("exterior_badges", "Exterior Badges", "Body", "Identifies the vehicle on its exterior surfaces."),
+            ("rear_lower_trim", "Rear Lower Trim", "Body", "Finishes the lower rear body area."),
+            ("front_grille", "Front Grille", "Body", "Closes and protects the front air inlet."),
+            ("front_license_plate", "Front License Plate", "Body", "Carries the front registration marking."),
+            ("rear_license_plate", "Rear License Plate", "Body", "Carries the rear registration marking."),
+            ("wiper_left", "Left Windshield Wiper", "Body", "Clears water from the left windshield area."),
+            ("wiper_right", "Right Windshield Wiper", "Body", "Clears water from the right windshield area."),
+            ("underbody", "Underbody Panel", "Body", "Covers and protects the underside of the vehicle."),
+            ("wheel_arch_liners", "Wheel-Arch Liners", "Body", "Shield the wheel housings from road debris."),
+            ("rear_engine_cover", "Rear Deck / Engine Cover", "Body", "Closes the rear engine compartment."),
+            ("door_left", "Left Door", "Body", "Provides left-side cabin access."),
+            ("door_trim_left", "Left Door Interior Trim", "Body", "Finishes the cabin-facing surface of the left door."),
+            ("door_right", "Right Door", "Body", "Provides right-side cabin access."),
+            ("door_trim_right", "Right Door Interior Trim", "Body", "Finishes the cabin-facing surface of the right door."),
+            ("windshield", "Windshield", "Glass", "Provides forward visibility and cabin enclosure."),
+            ("rear_window", "Rear Window", "Glass", "Provides rearward visibility and cabin enclosure."),
+            ("cabin_engine_partition_glass", "Cabin / Engine Partition Glass", "Glass", "Separates the cabin from the visible rear engine bay."),
+            ("side_window_left", "Left Side Window", "Glass", "Provides left-side visibility and cabin enclosure."),
+            ("side_window_right", "Right Side Window", "Glass", "Provides right-side visibility and cabin enclosure."),
+            ("interior_shell", "Interior Shell", "Interior", "Forms the main cabin environment."),
+            ("dashboard", "Dashboard", "Interior", "Supports the primary cabin controls and displays."),
+            ("brake_pedal", "Brake Pedal", "Interior", "Provides the driver input for braking."),
+            ("clutch_pedal", "Clutch Pedal", "Interior", "Provides the driver input for clutch operation."),
+            ("accelerator_pedal", "Accelerator Pedal", "Interior", "Provides the driver input for power demand."),
+            ("air_vent_left", "Left Air Vent", "Interior", "Directs conditioned air into the left cabin area."),
+            ("air_vent_center", "Center Air Vent", "Interior", "Directs conditioned air into the centre cabin area."),
+            ("air_vent_right", "Right Air Vent", "Interior", "Directs conditioned air into the right cabin area."),
+            ("center_tunnel", "Center Tunnel", "Interior", "Forms the central longitudinal cabin structure."),
+            ("cup_holder", "Cup Holder", "Interior", "Secures a drink container in the cabin."),
+            ("gear_shifter", "Gear Shifter and Gate", "Interior", "Provides the driver interface for selecting gears."),
+            ("infotainment_display", "Infotainment Display", "Interior", "Presents vehicle and media information."),
+            ("cd_player", "CD Player", "Interior", "Represents the cabin media-player unit."),
+            ("instrument_cluster", "Instrument Cluster", "Interior", "Presents driving and vehicle-status information."),
+            ("dashboard_speaker_grille", "Dashboard Speaker Grille", "Interior", "Protects the dashboard loudspeaker opening."),
+            ("rear_view_mirror", "Rear-View Mirror", "Interior", "Provides the driver a rearward view."),
+            ("seats", "Seat Assembly", "Interior", "Supports and positions the vehicle occupants."),
+            ("steering_wheel", "Steering Wheel", "Interior", "Provides the driver's primary directional input."),
+            ("front_left_tire", "Front Left Tire", "Wheels", "Provides the front-left road contact patch."),
+            ("front_left_rim", "Front Left Rim", "Wheels", "Supports the front-left tire and mounts it to the hub."),
+            ("front_right_tire", "Front Right Tire", "Wheels", "Provides the front-right road contact patch."),
+            ("front_right_rim", "Front Right Rim", "Wheels", "Supports the front-right tire and mounts it to the hub."),
+            ("rear_left_tire", "Rear Left Tire", "Wheels", "Provides the rear-left road contact patch."),
+            ("rear_left_rim", "Rear Left Rim", "Wheels", "Supports the rear-left tire and mounts it to the hub."),
+            ("rear_right_tire", "Rear Right Tire", "Wheels", "Provides the rear-right road contact patch."),
+            ("rear_right_rim", "Rear Right Rim", "Wheels", "Supports the rear-right tire and mounts it to the hub."),
+            ("front_left_brake_disc", "Front Left Brake Disc", "Brakes", "Provides the front-left rotating braking surface."),
+            ("front_left_brake_caliper", "Front Left Brake Caliper", "Brakes", "Applies friction to the front-left brake disc."),
+            ("front_right_brake_disc", "Front Right Brake Disc", "Brakes", "Provides the front-right rotating braking surface."),
+            ("front_right_brake_caliper", "Front Right Brake Caliper", "Brakes", "Applies friction to the front-right brake disc."),
+            ("rear_left_brake_disc", "Rear Left Brake Disc", "Brakes", "Provides the rear-left rotating braking surface."),
+            ("rear_left_brake_caliper", "Rear Left Brake Caliper", "Brakes", "Applies friction to the rear-left brake disc."),
+            ("rear_right_brake_disc", "Rear Right Brake Disc", "Brakes", "Provides the rear-right rotating braking surface."),
+            ("rear_right_brake_caliper", "Rear Right Brake Caliper", "Brakes", "Applies friction to the rear-right brake disc."),
+            ("engine_block", "Engine Block and Central Assembly", "Engine", "Contains the central power-producing engine assembly."),
+            ("engine_cover_left", "Left Engine Cover", "Engine", "Covers and finishes the left side of the engine assembly."),
+            ("engine_cover_right", "Right Engine Cover", "Engine", "Covers and finishes the right side of the engine assembly."),
+            ("engine_rear_panel", "Rear Engine Panel", "Engine", "Closes the rear face of the visible engine assembly."),
+            ("headlight_left_housing", "Left Headlight Housing", "Lighting", "Supports the left headlight optical components."),
+            ("headlight_left_emitters", "Left Headlight Emitters", "Lighting", "Represent the light-producing elements of the left headlight."),
+            ("headlight_left_lens", "Left Headlight Lens", "Lighting", "Covers and protects the left headlight optics."),
+            ("headlight_right_housing", "Right Headlight Housing", "Lighting", "Supports the right headlight optical components."),
+            ("headlight_right_emitters", "Right Headlight Emitters", "Lighting", "Represent the light-producing elements of the right headlight."),
+            ("headlight_right_lens", "Right Headlight Lens", "Lighting", "Covers and protects the right headlight optics."),
+            ("taillight_left_housing", "Left Taillight Housing", "Lighting", "Supports the left taillight optical components."),
+            ("taillight_left_emitters", "Left Taillight Emitters", "Lighting", "Represent the light-producing elements of the left taillight."),
+            ("taillight_left_lens", "Left Taillight Lens", "Lighting", "Covers and protects the left taillight optics."),
+            ("taillight_right_housing", "Right Taillight Housing", "Lighting", "Supports the right taillight optical components."),
+            ("taillight_right_emitters", "Right Taillight Emitters", "Lighting", "Represent the light-producing elements of the right taillight."),
+            ("taillight_right_lens", "Right Taillight Lens", "Lighting", "Covers and protects the right taillight optics."),
+            ("high_mounted_stop_light", "High-Mounted Stop Light", "Lighting", "Signals braking from the upper rear body area."),
+            ("rear_lower_center_light", "Rear Lower Centre Light", "Lighting", "Represents the lower central rear signal light."),
+        ]
 
         car_parts = {}
         for brand_name, car in cars.items():
+            part_data = audi_part_data if brand_name == "Audi" else standard_part_data
             for component_id, name, category_name, function in part_data:
                 part, _ = CarPart.objects.update_or_create(
                     car=car,
@@ -162,6 +253,12 @@ class Command(BaseCommand):
                     },
                 )
                 car_parts[(brand_name, component_id)] = part
+
+            if brand_name == "Audi":
+                valid_component_ids = [row[0] for row in audi_part_data]
+                CarPart.objects.filter(car=car).exclude(
+                    component_id__in=valid_component_ids
+                ).delete()
 
         return car_parts
 
@@ -187,11 +284,14 @@ class Command(BaseCommand):
             "BMW": "https://www.bmw.com/",
             "Toyota": "https://www.toyota.com/",
             "Mercedes-Benz": "https://www.mercedes-benz.com/",
+            "Audi": "https://www.audi.com/",
         }
 
         for brand_name in cars:
             for component_id, values in specs.items():
-                car_part = car_parts[(brand_name, component_id)]
+                car_part = car_parts.get((brand_name, component_id))
+                if not car_part:
+                    continue
                 for name, value in values:
                     PartSpecification.objects.update_or_create(
                         car_part=car_part,
@@ -199,16 +299,24 @@ class Command(BaseCommand):
                         defaults={"value": value},
                     )
 
-            engine = car_parts[(brand_name, "engine")]
+            engine = car_parts.get((brand_name, "engine")) or car_parts.get(
+                (brand_name, "engine_block")
+            )
             for related_id in ("radiator", "exhaust", "transmission"):
+                related_part = car_parts.get((brand_name, related_id))
+                if not engine or not related_part:
+                    continue
                 RelatedCarPart.objects.get_or_create(
                     car_part=engine,
-                    related_part=car_parts[(brand_name, related_id)],
+                    related_part=related_part,
                 )
 
-            for component_id in ("engine", "radiator"):
+            for component_id in ("engine", "engine_block", "radiator"):
+                car_part = car_parts.get((brand_name, component_id))
+                if not car_part:
+                    continue
                 PartSource.objects.update_or_create(
-                    car_part=car_parts[(brand_name, component_id)],
+                    car_part=car_part,
                     title=f"{brand_name} official website",
                     defaults={"url": source_urls[brand_name]},
                 )
@@ -253,13 +361,16 @@ class Command(BaseCommand):
         for brand_name, car in cars.items():
             brand_code = brand_name.upper().replace("-", "").replace(" ", "")[:4]
             for maker, category, component_id, name, sku_code, oem_code in spare_part_templates:
+                car_part = car_parts.get((brand_name, component_id))
+                if not car_part:
+                    continue
                 sku = f"{maker.upper()}-{brand_code}-{sku_code}"
                 spare_part, _ = SparePart.objects.update_or_create(
                     sku=sku,
                     defaults={
                         "brand": brand_objects[maker],
                         "category": category_objects[category],
-                        "car_part": car_parts[(brand_name, component_id)],
+                        "car_part": car_part,
                         "name": f"{name} for {car.car_model}",
                         "oem_number": f"{oem_code}-{brand_code}",
                         "description": "Development catalog item without price or stock data.",

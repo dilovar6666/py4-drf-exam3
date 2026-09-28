@@ -1,0 +1,5071 @@
+[
+  {
+    "id": "ford_gt40",
+    "brand": "Ford",
+    "name": "GT40 — source exhibit",
+    "year": 0,
+    "source": "source_models/car1/GT40.blend",
+    "file": "FordGT40.glb",
+    "length": 4.4,
+    "decimate": 0.7,
+    "textureMax": 2048,
+    "remove": [
+      "Studio_Ground1",
+      "PaintPallet4",
+      "PaintPallet2",
+      "PaintPallet3",
+      "PaintPallet1"
+    ],
+    "components": [
+      {
+        "id": "body_shell",
+        "name": "Body shell with integrated exterior panels",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Body"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.025,
+          "sizeFactor": 0
+        },
+        "description": "Remaining connected body surfaces and minor unidentified exterior hardware; no arbitrary cutting.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "windshield",
+        "name": "Windshield",
+        "category": "GLASS",
+        "sourceNodes": [
+          "GT40_Windshield"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.17,
+          "sizeFactor": 0
+        },
+        "description": "Windshield: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "side_window_left",
+        "name": "Left side glazing",
+        "category": "GLASS",
+        "sourceNodes": [
+          "GT40_WindowL"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Left side glazing: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "side_window_right",
+        "name": "Right side glazing",
+        "category": "GLASS",
+        "sourceNodes": [
+          "GT40_WindowR"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Right side glazing: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_window",
+        "name": "Rear glazing",
+        "category": "GLASS",
+        "sourceNodes": [
+          "GT40_BackWindow2",
+          "GT40_BackWindow1"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.19,
+          "sizeFactor": 0
+        },
+        "description": "Rear glazing: 2 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "wiper",
+        "name": "Windshield wiper",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Wiper1"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "description": "Windshield wiper: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "door_trim_left",
+        "name": "Left interior door trim",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_InteriorDoorHandleL",
+          "GT40_DoorInteriorScrewsL",
+          "GT40_DoorInteriorL"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "Left interior door trim: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "door_trim_right",
+        "name": "Right interior door trim",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_InteriorDoorHandleR",
+          "GT40_DoorInteriorScrewsR",
+          "GT40_DoorInteriorR"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "Right interior door trim: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "steering_wheel",
+        "name": "Steering wheel and column",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_SteeringWheelScrews",
+          "GT40_SteeringWheel1",
+          "GT40_SteeringWheel2"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.18,
+          "sizeFactor": 0
+        },
+        "description": "Steering wheel and column: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "pedals",
+        "name": "Pedal assembly",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_Pedal1",
+          "GT40_Pedal1Connector",
+          "GT40_Pedal2",
+          "GT40_Pedal2Connector",
+          "GT40_Pedal3Connector",
+          "GT40_Pedal3"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.14,
+          "sizeFactor": 0
+        },
+        "description": "Pedal assembly: 6 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "gear_selector",
+        "name": "Gear selector and surround",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_GearShifter",
+          "GT40_GearShiftSign",
+          "GT40_GearShiftCover"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.25,
+          "sizeFactor": 0
+        },
+        "description": "Gear selector and surround: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "handbrake",
+        "name": "Handbrake and cover",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_Handbrake",
+          "GT40_HandBrakeCover"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "Handbrake and cover: 2 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "instrument_cluster",
+        "name": "Instruments and indicators",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_Instrument8",
+          "GT40_Instrument7",
+          "GT40_Instrument6",
+          "GT40_InteriorLight4",
+          "GT40_InteriorLight5",
+          "GT40_InteriorLight6",
+          "GT40_InteriorLight3",
+          "GT40_InteriorLight2",
+          "GT40_InteriorLight1",
+          "GT40_Instrument3",
+          "GT40_Instrument4",
+          "GT40_Instrument5",
+          "GT40_RevCounter1",
+          "GT40_RevCounter2",
+          "GT40_Instrument2",
+          "GT40_Instrument1",
+          "GT40_Speedometer"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Instruments and indicators: 17 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "interior_controls",
+        "name": "Interior knobs",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_InteriorKnob4",
+          "GT40_InteriorKnob3",
+          "GT40_InteriorKnob5",
+          "GT40_InteriorKnob6",
+          "GT40_InteriorKnob7",
+          "GT40_InteriorKnob2",
+          "GT40_InteriorKnob1"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.13,
+          "sizeFactor": 0
+        },
+        "description": "Interior knobs: 7 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "interior_ducts",
+        "name": "Interior ventilation ducts",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_InteriorTube3",
+          "GT40_InteriorTube4",
+          "GT40_InteriorTube2",
+          "GT40_InteriorTube1",
+          "GT40_InteriorVent2",
+          "GT40_InteriorVent1"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.15,
+          "sizeFactor": 0
+        },
+        "description": "Interior ventilation ducts: 6 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "interior_bracing",
+        "name": "Interior bracing and foot bars",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_PassengerFootBar",
+          "GT40_InteriorBar3",
+          "GT40_InteriorBar4",
+          "GT40_InteriorBar2",
+          "GT40_InteriorBar1",
+          "GT40_DriverFootBar",
+          "GT40_DoorPanel",
+          "GT40_DoorPanelScrews"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        },
+        "description": "Interior bracing and foot bars: 8 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "indicators",
+        "name": "Front indicators",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_TurnSignalLights",
+          "GT40_TurnSignalGlass",
+          "GT40_TurnSignalSocket"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.23,
+          "sizeFactor": 0
+        },
+        "description": "Front indicators: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_grille",
+        "name": "Front grille and supports",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_FrontGrillSupport",
+          "GT40_FrontGrillBar",
+          "GT40_FrontGrill"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.27,
+          "sizeFactor": 0
+        },
+        "description": "Front grille and supports: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "underbody",
+        "name": "Underbody and rear box",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Underside",
+          "GT40_UndersideBoxScrews",
+          "GT40_UndersideBox"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "Underbody and rear box: 3 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_bracing",
+        "name": "Rear truss and supports",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_RearTrussSupport",
+          "GT40_RearTruss"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            -1
+          ],
+          "distanceFactor": 0.13,
+          "sizeFactor": 0
+        },
+        "description": "Rear truss and supports: 2 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_mechanical_assembly",
+        "name": "Rear assembly (source-labelled winch)",
+        "category": "UNKNOWN",
+        "sourceNodes": [
+          "GT40_RearWinchTrim",
+          "GT40_WinchPipes",
+          "GT40_WinchMotor",
+          "GT40_RearWinch",
+          "GT40_WinchSupport2",
+          "GT40_WinchSupport"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            -1
+          ],
+          "distanceFactor": 0.25,
+          "sizeFactor": 0
+        },
+        "description": "Source-labelled rear winch assembly, including motor and supports. The vehicle subsystem role is not confirmed by geometry, so it remains UNKNOWN.",
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "exterior_hardware",
+        "name": "Exterior trim and hardware",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_TrunkHinge2",
+          "GT40_WheelTrimScrewsB",
+          "GT40_WheelTrimB",
+          "GT40_WheelTrimF",
+          "GT40_DoorTrimR",
+          "GT40_DoorHandleR",
+          "GT40_DoorScrewsR",
+          "GT40_WheelTrimScrewsF",
+          "GT40_BodyTrim2",
+          "GT40_BodyTrim1",
+          "GT40_DoorTrimL",
+          "GT40_DoorHandleL",
+          "GT40_DoorScrewsL",
+          "GT40_RoofScrews",
+          "GT40_RearWindowScrews",
+          "GT40_IntakeScrews2",
+          "GT40_IntakeScrews1",
+          "GT40_DoorHatchScrews",
+          "GT40_RearTowHooks",
+          "GT40_FuelCap",
+          "GT40_TowHooks1",
+          "GT40_DoorHatch1",
+          "GT40_TrunkBolts",
+          "GT40_TrunkTrim1",
+          "GT40_TrunkHinge1",
+          "GT40_SpoilerBolt1",
+          "GT40_SpoilerBolt2",
+          "GT40_SpoilerBolt3"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        },
+        "description": "Remaining trims, hinges, fasteners, handles, hooks, caps and small wheel arch details; the four large independent arch surfaces are mapped separately.",
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "door_left",
+        "name": "Left door exterior",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Body__door_left"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies left door exterior; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.18,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "door_right",
+        "name": "Right door exterior",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Body__door_right"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies right door exterior; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.18,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "hood",
+        "name": "Front luggage hood",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Body__hood"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies front luggage hood; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.8,
+            0.3
+          ],
+          "distanceFactor": 0.18,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "engine_cover",
+        "name": "Rear engine cover",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_Body__engine_cover"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies rear engine cover; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.8,
+            -0.3
+          ],
+          "distanceFactor": 0.18,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "tire_fl",
+        "name": "FL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_WheelFL__tire"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies fl tire; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.13,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fl",
+          "assemblyOffset": [
+            0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "rim_fl",
+        "name": "FL rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_WheelFL",
+          "GT40_RimFL"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies fl rim; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fl",
+          "assemblyOffset": [
+            0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "tire_fr",
+        "name": "FR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_WheelFR__tire"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies fr tire; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.13,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fr",
+          "assemblyOffset": [
+            -0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "rim_fr",
+        "name": "FR rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_RimFR",
+          "GT40_WheelFR"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies fr rim; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fr",
+          "assemblyOffset": [
+            -0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "tire_rl",
+        "name": "RL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_WheelBL__tire"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies rl tire; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.13,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rl",
+          "assemblyOffset": [
+            0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "rim_rl",
+        "name": "RL rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_RimBL",
+          "GT40_WheelBL"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies rl rim; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rl",
+          "assemblyOffset": [
+            0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "tire_rr",
+        "name": "RR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_WheelBR__tire"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies rr tire; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.13,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rr",
+          "assemblyOffset": [
+            -0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "rim_rr",
+        "name": "RR rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "GT40_WheelBR",
+          "GT40_RimBR"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies rr rim; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rr",
+          "assemblyOffset": [
+            -0.42,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        }
+      },
+      {
+        "id": "engine_block",
+        "name": "engine block",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EngineBlock1",
+          "GT40_EngineBlockCaps",
+          "GT40_EngineCaps"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies engine block; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.8,
+            -0.3
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "intake",
+        "name": "intake",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EngineSuperChargers",
+          "GT40_EngineVent"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies intake; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0.2,
+            0.8,
+            -0.3
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "engine_valvetrain",
+        "name": "engine valvetrain",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EngineSprings1",
+          "GT40_EngineSpringsSupports",
+          "GT40_EngineSpringsFrame"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies engine valvetrain; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.8,
+            -0.3
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "engine_pipework",
+        "name": "engine pipework",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EnginePipes4",
+          "GT40_EnginePipes2",
+          "GT40_EnginePipes3",
+          "GT40_EnginePipes1"
+        ],
+        "confidence": "UNKNOWN",
+        "description": "Source geometry identifies engine pipework; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.8,
+            -0.3
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "engine_mounting_hardware",
+        "name": "engine mounting hardware",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EngineTrim3",
+          "GT40_EngineTrim2",
+          "GT40_EngineTrim1"
+        ],
+        "confidence": "UNKNOWN",
+        "description": "Source geometry identifies engine mounting hardware; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.8,
+            -0.3
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "headlight_left",
+        "name": "headlights left",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_HeadLights__left",
+          "GT40_HeadLightScrews__left",
+          "GT40_HeadLightGlass__left",
+          "GT40_HeadLightCover__left",
+          "GT40_HeadLightCover2__left"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies headlights left; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0.15
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "headlight_right",
+        "name": "headlights right",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_HeadLights",
+          "GT40_HeadLightScrews",
+          "GT40_HeadLightGlass",
+          "GT40_HeadLightCover",
+          "GT40_HeadLightCover2"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies headlights right; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0.15
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "headlights_trim",
+        "name": "headlights shared trim",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_SecondaryHeadlights",
+          "GT40_FrontSecondaryLightGlass",
+          "GT40_FrontSecondaryLightSocket"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies headlights shared trim; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.15,
+            1
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "taillight_left",
+        "name": "taillights left",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_Taillight2__left",
+          "GT40_TaillightTrim2__left",
+          "GT40_TaillightCover2__left",
+          "GT40_TaillightCover1__left",
+          "GT40_TaillightTrim1__left",
+          "GT40_Taillight1__left"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies taillights left; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            -0.15
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "taillight_right",
+        "name": "taillights right",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_Taillight2",
+          "GT40_TaillightTrim2",
+          "GT40_TaillightCover2",
+          "GT40_TaillightCover1",
+          "GT40_TaillightTrim1",
+          "GT40_Taillight1"
+        ],
+        "confidence": "HIGH",
+        "description": "Source geometry identifies taillights right; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            -0.15
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "taillights_trim",
+        "name": "taillights shared trim",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "GT40_TailightGlass"
+        ],
+        "confidence": "MEDIUM",
+        "description": "Source geometry identifies taillights shared trim; exact technical specifications are not documented.",
+        "explode": {
+          "direction": [
+            0,
+            0.15,
+            -1
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        }
+      },
+      {
+        "id": "seat_back_left",
+        "name": "Driver seat backrest",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_DriverSeat2"
+        ],
+        "explode": {
+          "direction": [
+            -0.15,
+            0.4,
+            0.3
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Separated by source mesh boundary: seat backrest versus cushion/base and attachment bars. Driver/passenger side follows source position.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "seat_base_left",
+        "name": "Driver seat base and supports",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_DriverSeat1",
+          "GT40_DriverSeatBar",
+          "GT40_DriverSeatMount"
+        ],
+        "explode": {
+          "direction": [
+            -0.15,
+            0.4,
+            -0.3
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Separated by source mesh boundary: seat backrest versus cushion/base and attachment bars. Driver/passenger side follows source position.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "seat_back_right",
+        "name": "Passenger seat backrest",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_PassengerSeat2"
+        ],
+        "explode": {
+          "direction": [
+            -0.15,
+            -0.4,
+            0.3
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Separated by source mesh boundary: seat backrest versus cushion/base and attachment bars. Driver/passenger side follows source position.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "seat_base_right",
+        "name": "Passenger seat base and supports",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "GT40_PassengerSeat1",
+          "GT40_PassengerSeatBar",
+          "GT40_PassengerSeatMount"
+        ],
+        "explode": {
+          "direction": [
+            -0.15,
+            -0.4,
+            -0.3
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Separated by source mesh boundary: seat backrest versus cushion/base and attachment bars. Driver/passenger side follows source position.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "radiator_left",
+        "name": "Left engine bay radiator",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_Radiator1__left"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right engine geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "radiator_right",
+        "name": "Right engine bay radiator",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_Radiator1__right"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right engine geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "exhaust_left",
+        "name": "Left rear exhaust assembly",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_RearExhaust__left"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right engine geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "exhaust_right",
+        "name": "Right rear exhaust assembly",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_RearExhaust__right"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right engine geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_grille_left",
+        "name": "Left rear grille panel",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_RearGrill__left"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right body geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_grille_right",
+        "name": "Right rear grille panel",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_RearGrill__right"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right body geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_wiring_left",
+        "name": "Left engine wire bundle",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EngineWires__left"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right engine geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_wiring_right",
+        "name": "Right engine wire bundle",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_EngineWires__right"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "description": "Disconnected left/right engine geometry islands split by source vehicle position; semantic identity follows the source object's name and placement.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "wheel_arch_front_left",
+        "name": "Front left wheel arch trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_WheelTrimF__arch_front_left"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            -0.1,
+            0
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "description": "One large source-connected wheel arch surface isolated from GT40_WheelTrimF/B; nearby small fasteners remain mapped with exterior hardware.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "wheel_arch_front_right",
+        "name": "Front right wheel arch trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_WheelTrimF__arch_front_right"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            -0.1,
+            0
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "description": "One large source-connected wheel arch surface isolated from GT40_WheelTrimF/B; nearby small fasteners remain mapped with exterior hardware.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "wheel_arch_rear_left",
+        "name": "Rear left wheel arch trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_WheelTrimB__arch_rear_left"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "description": "One large source-connected wheel arch surface isolated from GT40_WheelTrimF/B; nearby small fasteners remain mapped with exterior hardware.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "wheel_arch_rear_right",
+        "name": "Rear right wheel arch trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "GT40_WheelTrimB__arch_rear_right"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "description": "One large source-connected wheel arch surface isolated from GT40_WheelTrimF/B; nearby small fasteners remain mapped with exterior hardware.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_piston_bank_left",
+        "name": "Left engine piston bank",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_Pistons1"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            -0.2
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "description": "One of the two independently modeled, spatially separated piston banks in the rear engine; internal repeated islands are retained as a grouped assembly.",
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_piston_bank_right",
+        "name": "Right engine piston bank",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "GT40_Pistons2"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            -0.2
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "description": "One of the two independently modeled, spatially separated piston banks in the rear engine; internal repeated islands are retained as a grouped assembly.",
+        "confidence": "MEDIUM"
+      }
+    ],
+    "notes": "GT40 source name and geometry. Exact year and variant undocumented; year 0 is unknown."
+  },
+  {
+    "id": "mercedes_300sl",
+    "brand": "Mercedes-Benz",
+    "name": "300 SL — Robin V8 / OZ source exhibit",
+    "year": 0,
+    "source": "source_models/car3/sl300-robin-v8-and-oz-wheels/source/Sl300.glb",
+    "file": "Mercedes300SL.glb",
+    "length": 4.5,
+    "decimate": 0.65,
+    "textureMax": 2048,
+    "remove": [],
+    "components": [
+      {
+        "id": "body_shell",
+        "name": "Body shell and integrated panels",
+        "category": "BODY",
+        "sourceNodes": [
+          "Zylinder",
+          "Zylinder.001",
+          "Plane.168_300sl_paintjob_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.035,
+          "sizeFactor": 0
+        },
+        "description": "Material-combined painted body. Door skins, hood and boot lid are not independently separable."
+      },
+      {
+        "id": "exterior_trim",
+        "name": "Chrome exterior trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "Cube.019_300sl_chrome_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "description": "Chrome exterior trim: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "interior_assembly",
+        "name": "Interior assembly",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Plane.140_300sl_interior_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Combined interior mesh. Seats, steering wheel and dashboard are not claimed as independent geometry."
+      },
+      {
+        "id": "glazing_seals",
+        "name": "Glazing seals",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Plane.149_300sl_seal_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "Glazing seals: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "body_inserts",
+        "name": "Dark body inserts",
+        "category": "BODY",
+        "sourceNodes": [
+          "Plane.158_blackness_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "description": "Dark body inserts: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "glazing",
+        "name": "Vehicle glazing assembly",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Plane.163_300sl_glass_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.22,
+          "sizeFactor": 0
+        },
+        "description": "Vehicle glazing assembly: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_grille",
+        "name": "Front grille insert",
+        "category": "BODY",
+        "sourceNodes": [
+          "Plane.164_gird_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            1
+          ],
+          "distanceFactor": 0.17,
+          "sizeFactor": 0
+        },
+        "description": "Front grille insert: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "instrument_cluster",
+        "name": "Instrument faces",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Plane.176_gauges_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.23,
+          "sizeFactor": 0
+        },
+        "description": "Instrument faces: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "chassis",
+        "name": "Chassis assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Plane.178_300sl_chassis_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.14,
+          "sizeFactor": 0
+        },
+        "description": "Chassis assembly: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "interior_details",
+        "name": "Interior detail trim",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Plane.204_details_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.14,
+          "sizeFactor": 0
+        },
+        "description": "Interior detail trim: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_left_rim",
+        "name": "front left rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_4.002"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.24,
+          "sizeFactor": 0
+        },
+        "description": "front left rim: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_left_tire",
+        "name": "front left tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_7.002"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.32,
+          "sizeFactor": 0
+        },
+        "description": "front left tire: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_left_brake_disc",
+        "name": "front left brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Object_5.002"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "front left brake disc: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_left_wheel_hardware",
+        "name": "front left wheel hardware",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_2.002",
+          "Object_3.002",
+          "Object_6.002"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Small wheel-positioned hub/fastener geometry. Separate brake calipers are not confidently identified."
+      },
+      {
+        "id": "front_right_rim",
+        "name": "front right rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_4.003"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.24,
+          "sizeFactor": 0
+        },
+        "description": "front right rim: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_right_tire",
+        "name": "front right tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_7.003"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.32,
+          "sizeFactor": 0
+        },
+        "description": "front right tire: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_right_brake_disc",
+        "name": "front right brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Object_5.003"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "front right brake disc: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "front_right_wheel_hardware",
+        "name": "front right wheel hardware",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_2.003",
+          "Object_3.003",
+          "Object_6.003"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Small wheel-positioned hub/fastener geometry. Separate brake calipers are not confidently identified."
+      },
+      {
+        "id": "rear_left_rim",
+        "name": "rear left rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_4"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.24,
+          "sizeFactor": 0
+        },
+        "description": "rear left rim: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "rear_left_tire",
+        "name": "rear left tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_7"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.32,
+          "sizeFactor": 0
+        },
+        "description": "rear left tire: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "rear_left_brake_disc",
+        "name": "rear left brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Object_5.001"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "rear left brake disc: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "rear_left_wheel_hardware",
+        "name": "rear left wheel hardware",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_2.001",
+          "Object_3.001",
+          "Object_6.001"
+        ],
+        "explode": {
+          "direction": [
+            1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Small wheel-positioned hub/fastener geometry. Separate brake calipers are not confidently identified."
+      },
+      {
+        "id": "rear_right_rim",
+        "name": "rear right rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_4.004"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.24,
+          "sizeFactor": 0
+        },
+        "description": "rear right rim: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "rear_right_tire",
+        "name": "rear right tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_7.004"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.32,
+          "sizeFactor": 0
+        },
+        "description": "rear right tire: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "rear_right_brake_disc",
+        "name": "rear right brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Object_5.004"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.16,
+          "sizeFactor": 0
+        },
+        "description": "rear right brake disc: 1 original mesh object(s), grouped from this vehicle's source geometry. No mechanical specifications or product compatibility are inferred."
+      },
+      {
+        "id": "rear_right_wheel_hardware",
+        "name": "rear right wheel hardware",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Object_2.004",
+          "Object_3.004",
+          "Object_6.004"
+        ],
+        "explode": {
+          "direction": [
+            -1,
+            0.1,
+            0
+          ],
+          "distanceFactor": 0.2,
+          "sizeFactor": 0
+        },
+        "description": "Small wheel-positioned hub/fastener geometry. Separate brake calipers are not confidently identified."
+      },
+      {
+        "id": "rear_mechanical_assembly",
+        "name": "Rear mechanical accessory assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Object_2.005",
+          "Object_3.005"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.1,
+            -1
+          ],
+          "distanceFactor": 0.18,
+          "sizeFactor": 0
+        },
+        "description": "Rear-positioned objects with default materials: exact purpose unverified."
+      },
+      {
+        "id": "engine",
+        "name": "Front V8 engine assembly",
+        "category": "ENGINE",
+        "sourceNodes": [
+          "Cube_Chrome.001_0",
+          "Cube_Material.003_0",
+          "Cube_Material.004_0",
+          "Cube.001_Chrome.001_0",
+          "Cube.001_Material.003_0",
+          "Cylinder.002_Material.001_0",
+          "Cylinder.003_Chrome.001_0",
+          "Cylinder.003_Material.008_0",
+          "Cylinder.004_Chrome.001_0",
+          "Cylinder.004_Material.008_0",
+          "Cylinder.006_Material.004_0",
+          "Cylinder.008_Chrome.001_0",
+          "Fan.004_Chrome.001_0",
+          "Gear_Material.007_0"
+        ],
+        "explode": {
+          "direction": [
+            0,
+            0.7,
+            0.8
+          ],
+          "distanceFactor": 0.3,
+          "sizeFactor": 0
+        },
+        "description": "Separate front-positioned engine meshes; exact Robin V8 specification is not independently verified."
+      }
+    ],
+    "notes": "Modified 300 SL identity from source folder and 300sl materials. Exact year unverified; not claimed factory-original."
+  },
+  {
+    "id": "car2_vaz2105",
+    "brand": "VAZ",
+    "name": "2105",
+    "year": 0,
+    "source": "source_models/car2/vaz-2105/source/2105portfolio_sketch.blend",
+    "file": "VAZ2105.glb",
+    "length": 4.13,
+    "notes": "Source-matched VAZ-2105. Exact year and trim are undocumented.",
+    "components": [
+      {
+        "id": "tire_fl",
+        "name": "FL tire",
+        "category": "WHEELS",
+        "description": "Separate concentric large-radius tyre source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fl",
+          "assemblyOffset": [
+            0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder__island_0"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "tire_fr",
+        "name": "FR tire",
+        "category": "WHEELS",
+        "description": "Separate concentric large-radius tyre source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fr",
+          "assemblyOffset": [
+            -0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder__island_240"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rim_fl",
+        "name": "FL rim",
+        "category": "WHEELS",
+        "description": "Separate concentric smaller-radius rim source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.045,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fl",
+          "assemblyOffset": [
+            0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.001__island_0"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rim_fr",
+        "name": "FR rim",
+        "category": "WHEELS",
+        "description": "Separate concentric smaller-radius rim source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.045,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fr",
+          "assemblyOffset": [
+            -0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.001__island_343"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "tire_rl",
+        "name": "RL tire",
+        "category": "WHEELS",
+        "description": "Separate concentric large-radius tyre source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rl",
+          "assemblyOffset": [
+            0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.042__island_0"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "tire_rr",
+        "name": "RR tire",
+        "category": "WHEELS",
+        "description": "Separate concentric large-radius tyre source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rr",
+          "assemblyOffset": [
+            -0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.042__island_240"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rim_rl",
+        "name": "RL rim",
+        "category": "WHEELS",
+        "description": "Separate concentric smaller-radius rim source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.045,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rl",
+          "assemblyOffset": [
+            0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.043__island_0"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rim_rr",
+        "name": "RR rim",
+        "category": "WHEELS",
+        "description": "Separate concentric smaller-radius rim source geometry; confirm scale in the prepared render.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.045,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rr",
+          "assemblyOffset": [
+            -0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.043__island_343"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "body_shell",
+        "name": "Body shell (fused source geometry)",
+        "category": "BODY",
+        "description": "Connected carcass mesh remains fused; no arbitrary panel cuts.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.07,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "underbody",
+        "name": "Underbody structural skin",
+        "category": "CHASSIS",
+        "description": "Source geometry mapped as underbody structural skin; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.008"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "front_bumper",
+        "name": "Front lower fascia",
+        "category": "BODY",
+        "description": "Source geometry mapped as front lower fascia; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.026",
+          "Plane.013"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_bumper",
+        "name": "Rear lower fascia",
+        "category": "BODY",
+        "description": "Source geometry mapped as rear lower fascia; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.027",
+          "Plane.015"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "windshield",
+        "name": "Front windscreen",
+        "category": "GLASS",
+        "description": "Source geometry mapped as front windscreen; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0.3
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.043"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_window",
+        "name": "Rear window",
+        "category": "GLASS",
+        "description": "Source geometry mapped as rear window; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0.3
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.032"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "engine_block",
+        "name": "Engine block/head area",
+        "category": "ENGINE",
+        "description": "Source geometry mapped as engine block/head area; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.009",
+          "Cube.029",
+          "Cube.011",
+          "Cube.012",
+          "Cube.020",
+          "Cylinder.025",
+          "Cylinder.023",
+          "Cube.030"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_auxiliaries",
+        "name": "Engine auxiliary components",
+        "category": "ENGINE",
+        "description": "Source geometry mapped as engine auxiliary components; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.019",
+          "Cylinder.024",
+          "Cube.021",
+          "Cube.022",
+          "Cube.023",
+          "Plane.008",
+          "Cube.024",
+          "Cube.010"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_accessories",
+        "name": "Engine accessory geometry",
+        "category": "ENGINE",
+        "description": "Source geometry mapped as engine accessory geometry; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.015",
+          "Cylinder.008",
+          "Cylinder.009",
+          "Cylinder.010",
+          "Plane.006",
+          "Cylinder.011",
+          "Cylinder.012"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "engine_wiring",
+        "name": "Engine wiring geometry",
+        "category": "ENGINE",
+        "description": "Source geometry mapped as engine wiring geometry; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.007",
+          "Plane.010",
+          "Plane.039",
+          "Plane.053"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "vehicle_tubes_unknown",
+        "name": "Vehicle Tubes (Function Unconfirmed)",
+        "category": "UNKNOWN",
+        "description": "Six disconnected tube runs lie across a large front-to-rear span. Their geometry is preserved as a group; no engine/exhaust/fuel function is asserted.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.005",
+          "Plane.009"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "front_axle_suspension",
+        "name": "Front axle suspension geometry",
+        "category": "SUSPENSION",
+        "description": "Source geometry mapped as front axle suspension geometry; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.001",
+          "Plane.001",
+          "Cube.006",
+          "Cube.025",
+          "Cylinder.004",
+          "Cube.014",
+          "Cube.007",
+          "Circle",
+          "Cylinder.007",
+          "Cylinder.005",
+          "Plane.002",
+          "Plane",
+          "Cylinder.006",
+          "Cube.013"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_axle_suspension",
+        "name": "Rear axle suspension geometry",
+        "category": "SUSPENSION",
+        "description": "Source geometry mapped as rear axle suspension geometry; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.013",
+          "Cylinder.020",
+          "Cylinder.014",
+          "Cylinder.015",
+          "Cylinder.018",
+          "Cylinder.019",
+          "Plane.003",
+          "Cylinder.016",
+          "Cylinder.017"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "chassis_mechanical_assemblies",
+        "name": "Underbody mechanical assemblies",
+        "category": "CHASSIS",
+        "description": "Source geometry mapped as underbody mechanical assemblies; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.022",
+          "Plane.004",
+          "Cube.017",
+          "Cylinder.021",
+          "Cube.016",
+          "Cube.018"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "body_seals",
+        "name": "Body seal and moulding geometry",
+        "category": "BODY",
+        "description": "Source geometry mapped as body seal and moulding geometry; exact vehicle variant specifications are undocumented.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.041",
+          "Plane.042",
+          "Plane.031",
+          "Cube.069",
+          "Cube.074"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "front_right_door",
+        "name": "Front Right Door",
+        "category": "BODY",
+        "description": "Independent front door leaf in the right front opening; distinct carcass mesh.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.002"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_right_door",
+        "name": "Rear Right Door",
+        "category": "BODY",
+        "description": "Independent rear door leaf in the right rear opening; distinct carcass mesh.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.003"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_left_door",
+        "name": "Front Left Door",
+        "category": "BODY",
+        "description": "Independent front door leaf in the left front opening; distinct carcass mesh.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.081"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_left_door",
+        "name": "Rear Left Door",
+        "category": "BODY",
+        "description": "Independent rear door leaf in the left rear opening; distinct carcass mesh.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.080"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_right_door_panel",
+        "name": "Front Right Door Panel",
+        "category": "INTERIOR",
+        "description": "Front-right door card and its colocated pull/trim geometry.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.023",
+          "Cube.048"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_right_door_panel",
+        "name": "Rear Right Door Panel",
+        "category": "INTERIOR",
+        "description": "Rear-right door card; distinct panel mesh and position.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.024"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_left_door_panel",
+        "name": "Front Left Door Panel",
+        "category": "INTERIOR",
+        "description": "Front-left door card and its colocated pull/trim geometry.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.062",
+          "Cube.085"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_left_door_panel",
+        "name": "Rear Left Door Panel",
+        "category": "INTERIOR",
+        "description": "Rear-left door card; distinct panel mesh and position.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.12,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.063"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_left_door_glass",
+        "name": "Front Left Door Glass",
+        "category": "GLASS",
+        "description": "Front-left door pane from its separate original glass object.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.035"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_right_door_glass",
+        "name": "Front Right Door Glass",
+        "category": "GLASS",
+        "description": "Front-right door pane from its separate original glass object.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.033"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_left_door_glass",
+        "name": "Rear Left Door Glass",
+        "category": "GLASS",
+        "description": "Separated rear-left door pane from the source two-island side-glass mesh.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.034__rear_door_glass_left"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_right_door_glass",
+        "name": "Rear Right Door Glass",
+        "category": "GLASS",
+        "description": "Separated rear-right door pane from the source two-island side-glass mesh.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.057__rear_door_glass_right"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "left_quarter_glass",
+        "name": "Left Quarter Glass",
+        "category": "GLASS",
+        "description": "Fixed left rear quarter pane, separated by its disconnected source island.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.034__quarter_glass_left"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "right_quarter_glass",
+        "name": "Right Quarter Glass",
+        "category": "GLASS",
+        "description": "Fixed right rear quarter pane, separated by its disconnected source island.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.057__quarter_glass_right"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "hood",
+        "name": "Hood",
+        "category": "BODY",
+        "description": "Front bonnet outer panel and colocated inner/support mesh.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.005",
+          "Plane.055"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "trunk_lid",
+        "name": "Trunk Lid",
+        "category": "BODY",
+        "description": "Rear boot lid outer panel and colocated inner/support mesh.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.11,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.004",
+          "Plane.056"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_right_door_handle",
+        "name": "Front Right Door Handle",
+        "category": "BODY",
+        "description": "Exterior handle geometry positioned on the front-right door.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.046"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_right_door_handle",
+        "name": "Rear Right Door Handle",
+        "category": "BODY",
+        "description": "Exterior handle geometry positioned on the rear-right door.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.047"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_left_door_handle",
+        "name": "Front Left Door Handle",
+        "category": "BODY",
+        "description": "Exterior handle geometry positioned on the front-left door.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.084"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_left_door_handle",
+        "name": "Rear Left Door Handle",
+        "category": "BODY",
+        "description": "Exterior handle geometry positioned on the rear-left door.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.087"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "right_side_mirror",
+        "name": "Right Side Mirror",
+        "category": "BODY",
+        "description": "Mirror housing/support pair on the right front door corner.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.050",
+          "Cube.051",
+          "Plane.065__right_mirror_detail"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "left_side_mirror",
+        "name": "Left Side Mirror",
+        "category": "BODY",
+        "description": "Mirror housing/support and separate face detail on the left front door corner.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.082",
+          "Cube.083",
+          "Plane.054"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "right_body_moulding",
+        "name": "Right Body Moulding",
+        "category": "BODY",
+        "description": "Right-side repeated body moulding/end details, grouped by source side and placement.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.047",
+          "Plane.048",
+          "Plane.049",
+          "Plane.050"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "left_body_moulding",
+        "name": "Left Body Moulding",
+        "category": "BODY",
+        "description": "Left-side repeated body moulding/end details, grouped by source side and placement.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.058",
+          "Plane.059",
+          "Plane.060",
+          "Plane.061"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "front_left_headlight",
+        "name": "Front Left Headlight",
+        "category": "LIGHTING",
+        "description": "Left headlamp lenses, housing details and trim split by disconnected source islands.",
+        "explode": {
+          "direction": [
+            -1,
+            -0.3,
+            0
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.011__left",
+          "Plane.037__left",
+          "Plane.038__left",
+          "Cube.058__left",
+          "Cylinder.033__left"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_right_headlight",
+        "name": "Front Right Headlight",
+        "category": "LIGHTING",
+        "description": "Right headlamp lenses, housing details and trim split by disconnected source islands.",
+        "explode": {
+          "direction": [
+            1,
+            -0.3,
+            0
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.011__right",
+          "Plane.037__right",
+          "Plane.038__right",
+          "Cube.058__right",
+          "Cylinder.033__right"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_left_light",
+        "name": "Rear Left Light",
+        "category": "LIGHTING",
+        "description": "Left rear-light assembly: lens and colocated disconnected housing/detail islands.",
+        "explode": {
+          "direction": [
+            -1,
+            0.5,
+            0
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.014__left",
+          "Plane.036__left",
+          "Cube.057__left"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_right_light",
+        "name": "Rear Right Light",
+        "category": "LIGHTING",
+        "description": "Right rear-light assembly: lens and colocated disconnected housing/detail islands.",
+        "explode": {
+          "direction": [
+            1,
+            0.5,
+            0
+          ],
+          "distanceFactor": 0.1,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.014__right",
+          "Plane.036__right",
+          "Cube.057__right"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_left_indicator",
+        "name": "Front Left Indicator",
+        "category": "LIGHTING",
+        "description": "Left front indicator/lens and matching outer marker island.",
+        "explode": {
+          "direction": [
+            -1,
+            -0.4,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.045__left",
+          "Plane.070__left",
+          "Plane.069__left"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_right_indicator",
+        "name": "Front Right Indicator",
+        "category": "LIGHTING",
+        "description": "Right front indicator/lens and matching outer marker island.",
+        "explode": {
+          "direction": [
+            1,
+            -0.4,
+            0
+          ],
+          "distanceFactor": 0.09,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.045__right",
+          "Plane.070__right",
+          "Plane.069__right"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_grille",
+        "name": "Front Grille",
+        "category": "BODY",
+        "description": "Front grille/slat mesh at the front fascia; internal slats remain one selectable grille assembly.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.012"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_license_plate",
+        "name": "Front License Plate",
+        "category": "BODY",
+        "description": "Front plate/plate insert geometry centered at the front fascia.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.026",
+          "Cube.049"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_license_plate",
+        "name": "Rear License Plate",
+        "category": "BODY",
+        "description": "Rear plate panel and its backing/edge details at the rear fascia.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.066",
+          "Plane.067",
+          "Plane.068"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "dashboard",
+        "name": "Dashboard",
+        "category": "INTERIOR",
+        "description": "Instrument fascia/dashboard surfaces and colocated dash trim, grouped from the dashboard source collections.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.07,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.020",
+          "Cube.036",
+          "Plane.021",
+          "Plane.029",
+          "Cube.044",
+          "Cube.045",
+          "Cube.061",
+          "Plane.022",
+          "Plane.027",
+          "Cube.042",
+          "Cube.043",
+          "Cube.054",
+          "Plane.016",
+          "Plane.028",
+          "Plane.030"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "steering_wheel",
+        "name": "Steering Wheel",
+        "category": "INTERIOR",
+        "description": "Steering-wheel ring and attached hub/spoke meshes at the driver control position.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.027",
+          "Cube.037",
+          "Cube.038"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "center_controls",
+        "name": "Center Controls",
+        "category": "INTERIOR",
+        "description": "Small grouped center-dashboard/control geometry; exact switch functions are not asserted.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.07,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.039",
+          "Cube.059",
+          "Cylinder.034",
+          "Cube.060",
+          "Cube.078",
+          "Cylinder.041",
+          "Cube.079"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "sun_visors",
+        "name": "Sun Visors",
+        "category": "INTERIOR",
+        "description": "Two source-disconnected overhead visor panels with matching small attachments.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.06,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.075",
+          "Plane.051"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "headliner_trim",
+        "name": "Headliner Trim",
+        "category": "INTERIOR",
+        "description": "Four disconnected overhead cabin trim/rail pieces; retained as one cabin trim assembly.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.076"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "cabin_interior_shell",
+        "name": "Cabin Interior Shell",
+        "category": "INTERIOR",
+        "description": "Continuous connected interior shell spanning much of the cabin; no supported panel seams allow safe further separation.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.019"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_cabin_trim",
+        "name": "Rear Cabin Trim",
+        "category": "INTERIOR",
+        "description": "Rear and upper-cabin interior trim meshes grouped by their cabin collection and placement.",
+        "explode": {
+          "direction": [
+            0,
+            0.5,
+            0
+          ],
+          "distanceFactor": 0.05,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.040",
+          "Cylinder.038",
+          "Cube.068",
+          "Plane.052",
+          "Cube.063",
+          "Cylinder.036",
+          "Cube.064"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "interior_floor_trim",
+        "name": "Interior Floor Trim",
+        "category": "INTERIOR",
+        "description": "Low, thin cabin floor trim panel in the source salon collection.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.035"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "lower_dashboard_trim",
+        "name": "Lower Dashboard Trim",
+        "category": "INTERIOR",
+        "description": "Lower front-cabin/dash trim pair by measured position; exact individual control function is unconfirmed.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.05,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.040",
+          "Cube.041"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "front_left_seat",
+        "name": "Front Left Seat",
+        "category": "INTERIOR",
+        "description": "Left front seat cushion and backrest, paired by their separated same-side islands.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.031__left",
+          "Cube.032__left"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_right_seat",
+        "name": "Front Right Seat",
+        "category": "INTERIOR",
+        "description": "Right front seat cushion and backrest, paired by their separated same-side islands.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.031__right",
+          "Cube.032__right"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_seat_base",
+        "name": "Rear Seat Base",
+        "category": "INTERIOR",
+        "description": "Continuous rear bench cushion source mesh.",
+        "explode": {
+          "direction": [
+            0,
+            0.4,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.033"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "rear_seat_back",
+        "name": "Rear Seat Back",
+        "category": "INTERIOR",
+        "description": "Continuous rear bench backrest source mesh.",
+        "explode": {
+          "direction": [
+            0,
+            0.4,
+            0
+          ],
+          "distanceFactor": 0.08,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.034"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_headrests",
+        "name": "Front Headrests",
+        "category": "INTERIOR",
+        "description": "Two separate front-seat headrest cushions at the same longitudinal position as the front seats.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.055"
+        ],
+        "confidence": "HIGH"
+      },
+      {
+        "id": "front_seat_supports_unknown",
+        "name": "Front Seat Supports Unknown",
+        "category": "INTERIOR",
+        "description": "Low cabin crossbar/bracket geometry positioned beneath the front-seat region; precise hardware role is unconfirmed.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.026",
+          "Cube.066"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_seat_supports_unknown",
+        "name": "Rear Seat Supports Unknown",
+        "category": "INTERIOR",
+        "description": "Disconnected support-like pieces below the rear bench; precise role is unconfirmed.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.067"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "handbrake",
+        "name": "Handbrake",
+        "category": "INTERIOR",
+        "description": "Long lever and base geometry on the center floor, consistent with a handbrake control by shape and position.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.05,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.037",
+          "Cube.065"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_package_shelf",
+        "name": "Rear Package Shelf",
+        "category": "INTERIOR",
+        "description": "Broad rear-cabin parcel-shelf geometry behind the rear bench, retained as one four-island trim assembly.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.077"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_left_quarter_trim",
+        "name": "Rear Left Quarter Trim",
+        "category": "INTERIOR",
+        "description": "Left rear-cabin quarter trim island by source lateral position.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.044__left"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_right_quarter_trim",
+        "name": "Rear Right Quarter Trim",
+        "category": "INTERIOR",
+        "description": "Right rear-cabin quarter trim island by source lateral position.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.044__right"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "interior_rear_view_mirror",
+        "name": "Interior Rear View Mirror",
+        "category": "INTERIOR",
+        "description": "Small centered mirror and stem geometry at the upper windshield/cabin center.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.052",
+          "Cube.053",
+          "Plane.065__interior_mirror_detail"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "rear_cabin_roof_trim",
+        "name": "Rear Cabin Roof Trim",
+        "category": "INTERIOR",
+        "description": "Thin disconnected upper-cabin trim pieces grouped by their shared position and source collection.",
+        "explode": {
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.056",
+          "Cylinder.028"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "left_dashboard_side_trim",
+        "name": "Left Dashboard Side Trim",
+        "category": "INTERIOR",
+        "description": "Small trim pair at the left outer dashboard end by measured side position.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.070",
+          "Cube.072"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "right_dashboard_side_trim",
+        "name": "Right Dashboard Side Trim",
+        "category": "INTERIOR",
+        "description": "Small trim pair at the right outer dashboard end by measured side position.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.071",
+          "Cube.073"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "trunk_cavity_panel",
+        "name": "Trunk Cavity Panel",
+        "category": "BODY",
+        "description": "Large rear luggage-cavity panel inside the trunk region; exact floor/liner role is not provable.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.025"
+        ],
+        "confidence": "MEDIUM"
+      },
+      {
+        "id": "front_right_door_details_unknown",
+        "name": "Front Right Door Details Unknown",
+        "category": "UNKNOWN",
+        "description": "Small grouped detail geometry at the front right door; function is not confidently identifiable.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.03,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.035",
+          "Cube.062"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "front_left_door_details_unknown",
+        "name": "Front Left Door Details Unknown",
+        "category": "UNKNOWN",
+        "description": "Small grouped detail geometry at the front left door; function is not confidently identifiable.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.03,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.031",
+          "Cube.086"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_right_door_details_unknown",
+        "name": "Rear Right Door Details Unknown",
+        "category": "UNKNOWN",
+        "description": "Small grouped detail geometry at the rear right door; function is not confidently identifiable.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.03,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.003",
+          "Cube.088"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_left_door_details_unknown",
+        "name": "Rear Left Door Details Unknown",
+        "category": "UNKNOWN",
+        "description": "Small grouped detail geometry at the rear left door; function is not confidently identifiable.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.03,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.032",
+          "Cube.089"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "left_b_pillar_detail_unknown",
+        "name": "Left B Pillar Detail Unknown",
+        "category": "UNKNOWN",
+        "description": "Tiny exterior detail at the left-side B-pillar region; exact function is unknown.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.02,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.002"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "right_b_pillar_detail_unknown",
+        "name": "Right B Pillar Detail Unknown",
+        "category": "UNKNOWN",
+        "description": "Tiny exterior detail at the right-side B-pillar region; exact function is unknown.",
+        "explode": {
+          "direction": [
+            -1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.02,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cylinder.039"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_left_body_detail_unknown",
+        "name": "Rear Left Body Detail Unknown",
+        "category": "UNKNOWN",
+        "description": "Small isolated body-side detail at the left rear quarter; exact function is unknown.",
+        "explode": {
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "distanceFactor": 0.02,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Cube.028"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "front_right_wheel_hardware",
+        "name": "Front Right Wheel Hardware",
+        "category": "WHEELS",
+        "description": "Wheel-center/hub-side details grouped for this corner; the source does not prove a brake disc, caliper or drum.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fr",
+          "assemblyOffset": [
+            -0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.029__right",
+          "Cylinder.030__right"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "front_left_wheel_hardware",
+        "name": "Front Left Wheel Hardware",
+        "category": "WHEELS",
+        "description": "Wheel-center/hub-side details grouped for this corner; the source does not prove a brake disc, caliper or drum.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_fl",
+          "assemblyOffset": [
+            0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.029__left",
+          "Cylinder.030__left"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_right_wheel_hardware",
+        "name": "Rear Right Wheel Hardware",
+        "category": "WHEELS",
+        "description": "Wheel-center/hub-side details grouped for this corner; the source does not prove a brake disc, caliper or drum.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rr",
+          "assemblyOffset": [
+            -0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.044__right",
+          "Cylinder.045__right"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_left_wheel_hardware",
+        "name": "Rear Left Wheel Hardware",
+        "category": "WHEELS",
+        "description": "Wheel-center/hub-side details grouped for this corner; the source does not prove a brake disc, caliper or drum.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.065,
+          "sizeFactor": 0,
+          "assemblyId": "wheel_rl",
+          "assemblyOffset": [
+            0.34,
+            0,
+            0
+          ],
+          "assemblyProgressEnd": 0.5,
+          "componentProgressStart": 0.5
+        },
+        "sourceNodes": [
+          "Cylinder.044__left",
+          "Cylinder.045__left"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "front_fascia_details",
+        "name": "Front Fascia Details",
+        "category": "BODY",
+        "description": "Small distributed fastening details at front lamp/fascia positions; kept non-decomposed as a decorative fastener set.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.046__front_fascia_fasteners"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "rear_fascia_details",
+        "name": "Rear Fascia Details",
+        "category": "BODY",
+        "description": "Small distributed fastening details at rear-light/fascia positions; kept non-decomposed as a decorative fastener set.",
+        "explode": {
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Plane.046__rear_fascia_fasteners"
+        ],
+        "confidence": "UNKNOWN"
+      },
+      {
+        "id": "dashboard_ornament_unknown",
+        "name": "Dashboard Ornament Unknown",
+        "category": "UNKNOWN",
+        "description": "Small dashboard-positioned ornament and base; mesh groups name body parts like head/wings, but the intended object/function is not verified.",
+        "explode": {
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "distanceFactor": 0.04,
+          "sizeFactor": 0
+        },
+        "sourceNodes": [
+          "Quacker1",
+          "Cylinder.040"
+        ],
+        "confidence": "UNKNOWN"
+      }
+    ]
+  },
+  {
+    "id": "car4_generic_hatchback",
+    "brand": "Unknown",
+    "name": "Generic Hatchback",
+    "year": 0,
+    "source": "car-concept-3d-dashboard/qa/six-car/car4/source-copy/Car/Model/Car.fbx",
+    "file": "GenericHatchback.glb",
+    "length": 4.1,
+    "notes": "Source model identity or exact variant is undocumented.",
+    "components": [
+      {
+        "id": "body_shell",
+        "name": "Fused hatchback body shell",
+        "category": "BODY",
+        "sourceNodes": [
+          "Bodywork"
+        ],
+        "description": "Fused hatchback body shell; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "exterior_trim",
+        "name": "Exterior plastic and grille trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "Bodywork Plastic",
+          "Bodywork Plastic.003",
+          "grid Metalic",
+          "Circle"
+        ],
+        "description": "Exterior plastic and grille trim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_lights",
+        "name": "Front light assemblies",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "Front Light",
+          "Interior HeadLight"
+        ],
+        "description": "Front light assemblies; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_lights",
+        "name": "Rear light assemblies",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "Rear Light",
+          "Interior Rear Light",
+          "Interior Rear Light.003",
+          "Interior Rear Light.004",
+          "breaking rear light",
+          "BL_reverse Light",
+          "BL_Signal light",
+          "BR_reverse Light",
+          "BR_Signallight"
+        ],
+        "description": "Rear light assemblies; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "windshield",
+        "name": "Windshield and front glazing",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Windshield"
+        ],
+        "description": "Windshield and front glazing; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_window",
+        "name": "Rear hatch glazing",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Window",
+          "Trunk.001"
+        ],
+        "description": "Rear hatch glazing; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "windshield_wiper",
+        "name": "Windshield wiper",
+        "category": "BODY",
+        "sourceNodes": [
+          "Windshield wiper"
+        ],
+        "description": "Windshield wiper; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "antenna",
+        "name": "Roof antenna",
+        "category": "BODY",
+        "sourceNodes": [
+          "Antenna"
+        ],
+        "description": "Roof antenna; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "door_fl",
+        "name": "Front left door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Right Front Door.007",
+          "Door Handle.002",
+          "Right Front Door.008",
+          "Right Front Door.009",
+          "Right Front Door.010",
+          "Right Front Door.011",
+          "Right Front Door.012",
+          "Right Front Door.013",
+          "Right Front Door.015",
+          "Right Front Door.016",
+          "Right Front Door.017",
+          "Right Front Door.018",
+          "Right Front Door.022"
+        ],
+        "description": "Front left door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "door_fr",
+        "name": "Front right door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Right Front Door",
+          "Door Handle.001",
+          "Right Front Door.002",
+          "Right Front Door.001",
+          "Right Front Door.003",
+          "Right Front Door.004",
+          "Right Front Door.005",
+          "Right Front Door.006",
+          "Right Front Door.014",
+          "Right Front Door.019",
+          "Right Front Door.020",
+          "Right Front Door.021",
+          "Right Front Door.023"
+        ],
+        "description": "Front right door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "door_rl",
+        "name": "Rear left door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Right Back Door.006",
+          "Door handle.001",
+          "Right Back Door.007",
+          "Right Back Door.008",
+          "Right Back Door.009",
+          "Right Back Door.010",
+          "Right Back Door.011",
+          "Right Back Door.013",
+          "Right Back Door.016",
+          "Right Back Door.017",
+          "Right Back Door.019"
+        ],
+        "description": "Rear left door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "door_rr",
+        "name": "Rear right door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Right Back Door",
+          "Door handle",
+          "Right Back Door.002",
+          "Right Back Door.001",
+          "Right Back Door.003",
+          "Right Back Door.004",
+          "Right Back Door.005",
+          "Right Back Door.012",
+          "Right Back Door.014",
+          "Right Back Door.015",
+          "Right Back Door.018"
+        ],
+        "description": "Rear right door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_fl",
+        "name": "FL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Left Front Tire.001"
+        ],
+        "description": "FL tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_fl",
+        "name": "FL metallic rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Left Front Tire"
+        ],
+        "description": "FL metallic rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "wheel_detail_fl",
+        "name": "FL wheel center detail",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Left Front Tire.002"
+        ],
+        "description": "FL wheel center detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_rl",
+        "name": "RL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Left back Tire.001"
+        ],
+        "description": "RL tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_rl",
+        "name": "RL metallic rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Left back Tire"
+        ],
+        "description": "RL metallic rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "wheel_detail_rl",
+        "name": "RL wheel center detail",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Left back Tire.002"
+        ],
+        "description": "RL wheel center detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_fr",
+        "name": "FR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Right Front Tire.001"
+        ],
+        "description": "FR tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_fr",
+        "name": "FR metallic rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Right Front Tire"
+        ],
+        "description": "FR metallic rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "wheel_detail_fr",
+        "name": "FR wheel center detail",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Right Front Tire.002"
+        ],
+        "description": "FR wheel center detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_rr",
+        "name": "RR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Right Back Tire.001"
+        ],
+        "description": "RR tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_rr",
+        "name": "RR metallic rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Right Back Tire"
+        ],
+        "description": "RR metallic rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "wheel_detail_rr",
+        "name": "RR wheel center detail",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Right Back Tire.002"
+        ],
+        "description": "RR wheel center detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "trunk_lid",
+        "name": "Rear hatch / trunk assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Trunk",
+          "Trunk.002",
+          "Trunk.003",
+          "Trunk Lid Rubber Seal"
+        ],
+        "description": "Rear hatch / trunk assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_seat_left",
+        "name": "Front left seat",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Left Front Seat",
+          "Left Front Seat.001",
+          "Left Front Seat.002",
+          "Left Front Seat.003"
+        ],
+        "description": "Front left seat; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_seat_right",
+        "name": "Front right seat",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Right Front Seat.004",
+          "Right Front Seat.001",
+          "Right Front Seat.002",
+          "Right Front Seat.003"
+        ],
+        "description": "Front right seat; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_seat",
+        "name": "Rear seating assembly",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Rear Seat.004",
+          "Rear Seat.001",
+          "Rear Seat.002",
+          "Rear Seat.003"
+        ],
+        "description": "Rear seating assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "steering_wheel",
+        "name": "Steering wheel and spokes",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Steering Wheel",
+          "Steering Wheel.001",
+          "Steering Wheel.002",
+          "Steering Wheel.003",
+          "Steering Wheel.004"
+        ],
+        "description": "Steering wheel and spokes; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "steering_column",
+        "name": "Steering column and adjustment",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Steering Column Adjustment"
+        ],
+        "description": "Steering column and adjustment; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "pedals",
+        "name": "Clutch, brake and accelerator pedals",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "clutch pedal",
+          "brake pedal",
+          "acelerator pedal"
+        ],
+        "description": "Clutch, brake and accelerator pedals; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "gear_selector",
+        "name": "Gear selector and hand brake",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "gear shift",
+          "gear shift.001",
+          "gear shift.002",
+          "gear shift.003",
+          "hand brake",
+          "hand brake.001"
+        ],
+        "description": "Gear selector and hand brake; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "dashboard",
+        "name": "Dashboard and instrument panel",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Panel",
+          "Panel metalic",
+          "Panel White",
+          "Details Panel",
+          "Instrument Panel 1",
+          "Instrument Panel 2",
+          "Panel.001",
+          "Panel.002",
+          "Panel.003",
+          "Panel.008",
+          "Left air outlet cover",
+          "Left air outlet cover.001",
+          "Right air outlet cover",
+          "Right air outlet cover.001",
+          "Console 1",
+          "Console 2",
+          "Console 3",
+          "Console 3.001",
+          "Console 3.002",
+          "Console 3.003",
+          "Cover 2",
+          "Ventilation Button",
+          "Hazard Light Button",
+          "Ar Conditioning Buttton 1",
+          "Ar Conditioning Buttton 2",
+          "Ar Conditioning Buttton 3",
+          "Button",
+          "Button.001",
+          "Button.002",
+          "Button.003",
+          "Button.004",
+          "Button.005",
+          "palette 1 Left",
+          "palette 2 Left",
+          "palette 3 Left",
+          "palette 1 Right",
+          "palette 2 Right",
+          "palette 3 Right"
+        ],
+        "description": "Dashboard and instrument panel; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "interior_trim",
+        "name": "Cabin lining, mats and trim",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "inner lining.002",
+          "inner lining.013",
+          "Mat 1",
+          "Mat 2",
+          "mat 3",
+          "Mat 4",
+          "inner lining.001",
+          "inner lining.003",
+          "inner lining.004",
+          "inner lining.005",
+          "Rubbers",
+          "Cover",
+          "Safety Strap 1",
+          "Safety Strap 2",
+          "Front Wheel Protect",
+          "Back Wheel Protect",
+          "Plastic",
+          "Interior fog light",
+          "Light",
+          "Ceiling Light",
+          "Ceiling Light 2",
+          "Interior Front Light",
+          "Rear View Mirror",
+          "Rear View Mirror.001",
+          "rear view mirror glass",
+          "Sun Protection",
+          "Sun Protection.001",
+          "Sun Protection.002",
+          "Sun Protection.003"
+        ],
+        "description": "Cabin lining, mats and trim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "exterior_indicators",
+        "name": "Turn indicators and exterior small lighting",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "Direction Indicator 2",
+          "Direction Indicator 2.001",
+          "RF_turn signal",
+          "LF_turn signal"
+        ],
+        "description": "Turn indicators and exterior small lighting; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "hinges",
+        "name": "Door hinge hardware",
+        "category": "BODY",
+        "sourceNodes": [
+          "Hinge"
+        ],
+        "description": "Door hinge hardware; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "unclassified_source_details",
+        "name": "Unclassified source details (identity uncertain)",
+        "category": "OTHER",
+        "sourceNodes": [
+          "Glass fog light",
+          "Handle",
+          "Plane.002"
+        ],
+        "description": "Unclassified source details (identity uncertain); grouped from the reviewed source geometry. Exact specifications are undocumented."
+      }
+    ]
+  },
+  {
+    "id": "car5_unidentified",
+    "brand": "Unknown",
+    "name": "Car 5 (identity unconfirmed)",
+    "year": 0,
+    "source": "source_models/car5/uploads_files_4478463_Underground+Garage+Scene.blend",
+    "file": "Car5.glb",
+    "preview": "car5_unidentified.jpg",
+    "length": 4.5,
+    "notes": "Source model identity or exact variant is undocumented.",
+    "components": [
+      {
+        "id": "rim_rr",
+        "name": "RR rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_RR__material_CSR2_Wheel1A_Rim"
+        ],
+        "description": "RR rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_rr",
+        "name": "RR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_RR__material_CSR2_Wheel1A_Tire"
+        ],
+        "description": "RR tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_disc_rr",
+        "name": "RR brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Wheel_01_RR__material_CSR2_Wheel1A_Rotor"
+        ],
+        "description": "RR brake disc; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_fr",
+        "name": "FR rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_RF__material_CSR2_Wheel1A_Rim"
+        ],
+        "description": "FR rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_fr",
+        "name": "FR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_RF__material_CSR2_Wheel1A_Tire"
+        ],
+        "description": "FR tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_disc_fr",
+        "name": "FR brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Wheel_01_RF__material_CSR2_Wheel1A_Rotor"
+        ],
+        "description": "FR brake disc; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_rl",
+        "name": "RL rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_LR__material_CSR2_Wheel1A_Rim"
+        ],
+        "description": "RL rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_rl",
+        "name": "RL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_LR__material_CSR2_Wheel1A_Tire"
+        ],
+        "description": "RL tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_disc_rl",
+        "name": "RL brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Wheel_01_LR__material_CSR2_Wheel1A_Rotor"
+        ],
+        "description": "RL brake disc; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_fl",
+        "name": "FL rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_LF__material_CSR2_Wheel1A_Rim"
+        ],
+        "description": "FL rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_fl",
+        "name": "FL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "Wheel_01_LF__material_CSR2_Wheel1A_Tire"
+        ],
+        "description": "FL tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_disc_fl",
+        "name": "FL brake disc",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "Wheel_01_LF__material_CSR2_Wheel1A_Rotor"
+        ],
+        "description": "FL brake disc; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "body_shell",
+        "name": "Painted and carbon exterior shell (source-fused)",
+        "category": "BODY",
+        "sourceNodes": [
+          "Paint",
+          "Coloured",
+          "Carbon1"
+        ],
+        "description": "Painted and carbon exterior shell (source-fused); grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "chassis",
+        "name": "Underbody base geometry",
+        "category": "CHASSIS",
+        "sourceNodes": [
+          "Base"
+        ],
+        "description": "Underbody base geometry; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "lighting",
+        "name": "Combined front/rear light geometry",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "Light.002"
+        ],
+        "description": "Combined front/rear light geometry; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "glazing",
+        "name": "Body glass and glazing",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Glass",
+          "GlassInside"
+        ],
+        "description": "Body glass and glazing; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "interior",
+        "name": "Cabin and interior trim",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Interior",
+          "InteriorZone2",
+          "InteriorEmissive",
+          "SeatBelt"
+        ],
+        "description": "Cabin and interior trim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "steering_wheel",
+        "name": "Steering wheel assembly",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "SteeringWheel_InteriorEmissive",
+          "SteeringWheel_Interior",
+          "SteeringWheel_Carbon1",
+          "SteeringWheel_Badge"
+        ],
+        "description": "Steering wheel assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "trunk_lid",
+        "name": "Trunk lid assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Trunk_Paint",
+          "Trunk_Coloured",
+          "Trunk_Carbon1"
+        ],
+        "description": "Trunk lid assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_grille",
+        "name": "Front and rear grille geometry",
+        "category": "BODY",
+        "sourceNodes": [
+          "Grille3",
+          "Grille2",
+          "Grille1"
+        ],
+        "description": "Front and rear grille geometry; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_spoiler_hardware",
+        "name": "Rear spoiler hinge/linkage details",
+        "category": "BODY",
+        "sourceNodes": [
+          "Spoiler_Hinge3_Coloured",
+          "Spoiler_Hinge2_Paint",
+          "Spoiler_Hinge2_Coloured",
+          "Spoiler_Hinge2_Carbon1",
+          "Spoiler_Hinge1_Coloured"
+        ],
+        "description": "Rear spoiler hinge/linkage details; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "door_fr",
+        "name": "Front right door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "DoorRF_Window_GlassInside",
+          "DoorRF_Window_Glass",
+          "DoorRF_Light",
+          "DoorRF_InteriorZone2",
+          "DoorRF_InteriorEmissive",
+          "DoorRF_Interior",
+          "DoorRF_GlassInside",
+          "DoorRF_Glass",
+          "DoorRF_Coloured",
+          "DoorRF_Carbon1"
+        ],
+        "description": "Front right door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "door_fl",
+        "name": "Front left door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "DoorLF_Window_GlassInside",
+          "DoorLF_Window_Glass",
+          "DoorLF_Light",
+          "DoorLF_InteriorZone2",
+          "DoorLF_InteriorEmissive",
+          "DoorLF_Interior",
+          "DoorLF_GlassInside",
+          "DoorLF_Glass",
+          "DoorLF_Coloured",
+          "DoorLF_Carbon1"
+        ],
+        "description": "Front left door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_caliper_rr",
+        "name": "RR brake caliper",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "CaliperRR",
+          "CaliperLR__island_low"
+        ],
+        "description": "RR brake caliper; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_caliper_fr",
+        "name": "FR brake caliper",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "CaliperRF",
+          "CaliperLF__island_low"
+        ],
+        "description": "FR brake caliper; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_caliper_rl",
+        "name": "RL brake caliper",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "CaliperLR__island_high"
+        ],
+        "description": "RL brake caliper; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "brake_caliper_fl",
+        "name": "FL brake caliper",
+        "category": "BRAKES",
+        "sourceNodes": [
+          "CaliperLF__island_high"
+        ],
+        "description": "FL brake caliper; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "badges",
+        "name": "Vehicle badge geometry",
+        "category": "BODY",
+        "sourceNodes": [
+          "Badge.001",
+          "Badge"
+        ],
+        "description": "Vehicle badge geometry; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "unidentified_car_detail",
+        "name": "Unidentified vehicle detail",
+        "category": "OTHER",
+        "sourceNodes": [
+          "_CSB"
+        ],
+        "description": "Unidentified vehicle detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      }
+    ]
+  },
+  {
+    "id": "mercedes_benz_560_sel",
+    "brand": "Mercedes-Benz",
+    "name": "560 SEL",
+    "year": 0,
+    "source": "source_models/car6/Mercedes+Benz+560+SEL.blend/Mercedes Benz 560 SEL.blend",
+    "file": "Mercedes560SEL.glb",
+    "length": 5.16,
+    "notes": "Source model identity or exact variant is undocumented.",
+    "components": [
+      {
+        "id": "body_chassis_fused",
+        "name": "Main body and chassis (source-fused)",
+        "category": "BODY",
+        "sourceNodes": [
+          "Body-Chassis-Origine"
+        ],
+        "description": "Main body and chassis (source-fused); grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_left_door",
+        "name": "Front left door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Cube"
+        ],
+        "description": "Front left door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_right_door",
+        "name": "Front right door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Cube.001"
+        ],
+        "description": "Front right door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_left_door",
+        "name": "Rear left door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Cube.002"
+        ],
+        "description": "Rear left door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_right_door",
+        "name": "Rear right door assembly",
+        "category": "BODY",
+        "sourceNodes": [
+          "Cube.003"
+        ],
+        "description": "Rear right door assembly; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "hood",
+        "name": "Front hood / bonnet panel",
+        "category": "BODY",
+        "sourceNodes": [
+          "Plane.001"
+        ],
+        "description": "Front hood / bonnet panel; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_bumper",
+        "name": "Front lower body panel",
+        "category": "BODY",
+        "sourceNodes": [
+          "Plane.002"
+        ],
+        "description": "Front lower body panel; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_bumper",
+        "name": "Rear lower body panel",
+        "category": "BODY",
+        "sourceNodes": [
+          "Plane.003"
+        ],
+        "description": "Rear lower body panel; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "side_chrome",
+        "name": "Side chrome trim",
+        "category": "BODY",
+        "sourceNodes": [
+          "Side-Chrome"
+        ],
+        "description": "Side chrome trim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "windshield",
+        "name": "Front windshield",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Window"
+        ],
+        "description": "Front windshield; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_window",
+        "name": "Rear glass",
+        "category": "GLASS",
+        "sourceNodes": [
+          "Rear-Glass",
+          "Rear-Glass-Details"
+        ],
+        "description": "Rear glass; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "roof_panel_detail",
+        "name": "Roof mounted panel detail",
+        "category": "BODY",
+        "sourceNodes": [
+          "Top-Door"
+        ],
+        "description": "Roof mounted panel detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "interior_mirror",
+        "name": "Interior rear-view mirror",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Inside-Mirror"
+        ],
+        "description": "Interior rear-view mirror; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "steering_wheel",
+        "name": "Steering wheel geometry",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Wheel"
+        ],
+        "description": "Steering wheel geometry; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "interior_floor",
+        "name": "Cabin carpets",
+        "category": "INTERIOR",
+        "sourceNodes": [
+          "Carpets"
+        ],
+        "description": "Cabin carpets; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "exhaust",
+        "name": "Exhaust outlet/system detail",
+        "category": "EXHAUST",
+        "sourceNodes": [
+          "Exhaust"
+        ],
+        "description": "Exhaust outlet/system detail; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_fl",
+        "name": "FL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "FL__material_Tire_0",
+          "FL__material_Tire_1"
+        ],
+        "description": "FL tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_fl",
+        "name": "FL rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "FL__material_Rim"
+        ],
+        "description": "FL rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_fr",
+        "name": "FR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "FR__material_Tire_0",
+          "FR__material_Tire_1"
+        ],
+        "description": "FR tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_fr",
+        "name": "FR rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "FR__material_Rim"
+        ],
+        "description": "FR rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_rl",
+        "name": "RL tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "BL__material_Tire_0",
+          "BL__material_Tire_1"
+        ],
+        "description": "RL tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_rl",
+        "name": "RL rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "BL__material_Rim"
+        ],
+        "description": "RL rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "tire_rr",
+        "name": "RR tire",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "BR__material_Tire_0",
+          "BR__material_Tire_1"
+        ],
+        "description": "RR tire; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rim_rr",
+        "name": "RR rim",
+        "category": "WHEELS",
+        "sourceNodes": [
+          "BR__material_Rim"
+        ],
+        "description": "RR rim; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "front_lights",
+        "name": "Front lighting assemblies",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "Lights__island_front"
+        ],
+        "description": "Front lighting assemblies; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_lights",
+        "name": "Rear lighting assemblies",
+        "category": "LIGHTING",
+        "sourceNodes": [
+          "Lights__island_rear",
+          "Rear-Lights"
+        ],
+        "description": "Rear lighting assemblies; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      },
+      {
+        "id": "rear_panel_unidentified",
+        "name": "Unidentified rear body panel",
+        "category": "OTHER",
+        "sourceNodes": [
+          "Door.002"
+        ],
+        "description": "Unidentified rear body panel; grouped from the reviewed source geometry. Exact specifications are undocumented."
+      }
+    ]
+  }
+]

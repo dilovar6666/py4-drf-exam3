@@ -1,5 +1,9 @@
 # Auto Anatomy
 
+The active frontend is now the light, multi-page React application. See
+[REACT_MIGRATION.md](REACT_MIGRATION.md) for startup, routes, admin permissions
+and verification. The documentation below describes the retained legacy implementation.
+
 Auto Anatomy is a cinematic, browser-based 3D encyclopedia. Its Three.js experience is model-agnostic: a small model config maps the active GLB hierarchy to stable logical component IDs used by the story, exploded view, Raycaster, camera focus and laboratory.
 
 ## Experience

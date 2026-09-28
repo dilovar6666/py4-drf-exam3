@@ -34,6 +34,7 @@ const DOM = {
   header: document.querySelector('#site-header'),
   story: document.querySelector('#story'),
   storyProgress: document.querySelector('#story-progress'),
+  storyStage: document.querySelector('#story-stage-label'),
   explodePercent: document.querySelector('#explode-percent'),
   enterLab: document.querySelector('#enter-lab'),
   labUi: document.querySelector('#lab-ui'),
@@ -117,7 +118,7 @@ rimLight.position.set(-5, 4.5, -7);
 const topLight = new THREE.RectAreaLight(0xf0f5ef, 4.6, 6, 3.5);
 topLight.position.set(0, 6.5, 0.5);
 topLight.lookAt(0, 0, 0);
-const accentLight = new THREE.PointLight(0xc9ff48, 0.22, 12, 2);
+const accentLight = new THREE.PointLight(0xffffff, 0.16, 12, 2);
 accentLight.position.set(0, -0.8, 1.5);
 scene.add(ambientLight, keyLight, fillLight, rimLight, topLight, accentLight);
 qualityController.start();
@@ -177,6 +178,8 @@ let lastExplodeProgress = Number.NaN;
 let lastExplodePercent = -1;
 let lastStoryPercent = -1;
 let resizeFrame = 0;
+const storyBasePosition = new THREE.Vector3();
+const storyBaseRotation = new THREE.Euler();
 
 function applyQualityProfile(profile) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, profile.maxPixelRatio));
@@ -241,7 +244,7 @@ function createLabEnvironment() {
   room.add(grid);
 
   const platformMaterial = new THREE.MeshStandardMaterial({ color: 0x06090a, roughness: 0.58, metalness: 0.46 });
-  const edgeMaterial = new THREE.MeshBasicMaterial({ color: 0x93b99d, transparent: true, opacity: 0.16 });
+  const edgeMaterial = new THREE.MeshBasicMaterial({ color: 0x8f918c, transparent: true, opacity: 0.12 });
   availableParts.forEach((part) => {
     const { slot } = part;
     const platformGeometry = new THREE.CylinderGeometry(slot.pedestalRadius, slot.pedestalRadius * 1.035, slot.pedestalHeight, 64);
@@ -254,7 +257,7 @@ function createLabEnvironment() {
     room.add(platform, edge);
   });
 
-  const frameMaterial = new THREE.MeshBasicMaterial({ color: 0xc9ff48, transparent: true, opacity: 0.16 });
+  const frameMaterial = new THREE.MeshBasicMaterial({ color: 0xf2f1ed, transparent: true, opacity: 0.1 });
   const frameGeometry = new THREE.BoxGeometry(0.018, 6.5, 0.018);
   [-6, 0, 6].forEach((x) => {
     const frame = new THREE.Mesh(frameGeometry, frameMaterial);
@@ -288,27 +291,31 @@ function updateStoryScene(progress) {
   let cameraPosition;
   let target;
 
-  if (p <= 0.2) {
-    const t = smootherStep(p / 0.2);
-    cameraPosition = mixVector([5.2, 1.72, 6.15], [4.45, 1.35, 5.45], t, camera.position);
-    target = mixVector([0, 0.16, 0], [0, 0.22, 0], t, storyLookTarget);
-  } else if (p <= 0.4) {
-    const t = smootherStep((p - 0.2) / 0.2);
-    cameraPosition = mixVector([4.45, 1.35, 5.45], [3.6, 0.95, 4.25], t, camera.position);
-    target = mixVector([0, 0.22, 0], [0, 0.12, 0], t, storyLookTarget);
-  } else if (p <= 0.7) {
-    const t = smootherStep((p - 0.4) / 0.3);
-    cameraPosition = mixVector([3.6, 0.95, 4.25], [5.35, 2.0, 6.7], t, camera.position);
-    target = mixVector([0, 0.12, 0], [0, 0.28, 0], t, storyLookTarget);
-  } else {
-    const t = smootherStep((p - 0.7) / 0.3);
-    cameraPosition = mixVector([5.35, 2.0, 6.7], [-3.9, 1.35, 6.3], t, camera.position);
-    target = mixVector([0, 0.28, 0], [0, 0.18, -0.15], t, storyLookTarget);
-  }
+  const stages = [
+    { end: 0.15, from: [5.2, 1.72, 6.15], to: [4.65, 1.44, 5.65], fromTarget: [0, 0.16, 0], toTarget: [0, 0.2, 0], label: '00 / INTRO' },
+    { end: 0.3, from: [4.65, 1.44, 5.65], to: [3.2, 0.78, 4.15], fromTarget: [0, 0.2, 0], toTarget: [0, 0.08, 0], label: '01 / DESIGN' },
+    { end: 0.45, from: [3.2, 0.78, 4.15], to: [-3.8, 1.55, 4.95], fromTarget: [0, 0.08, 0], toTarget: [0, 0.22, -0.7], label: '02 / PERFORMANCE' },
+    { end: 0.58, from: [-3.8, 1.55, 4.95], to: [4.55, 0.85, 4.15], fromTarget: [0, 0.22, -0.7], toTarget: [0.72, -0.12, 0.62], label: '03 / BRAKING' },
+    { end: 0.78, from: [4.55, 0.85, 4.15], to: [5.6, 2.3, 7.2], fromTarget: [0.72, -0.12, 0.62], toTarget: [0, 0.32, 0], label: '04 / ENGINEERING' },
+    { end: 0.9, from: [5.6, 2.3, 7.2], to: [3.8, 2.0, 6.9], fromTarget: [0, 0.32, 0], toTarget: [0, 0.2, 0], label: '05 / ANATOMY' },
+    { end: 1, from: [3.8, 2.0, 6.9], to: [-4.7, 1.45, 7.1], fromTarget: [0, 0.2, 0], toTarget: [0, 0.16, -0.1], label: '06 / FULL VIEW' }
+  ];
+  const stageIndex = stages.findIndex((stage) => p <= stage.end);
+  const stage = stages[Math.max(0, stageIndex)];
+  const previousEnd = stageIndex > 0 ? stages[stageIndex - 1].end : 0;
+  const t = smootherStep((p - previousEnd) / Math.max(0.001, stage.end - previousEnd));
+  cameraPosition = mixVector(stage.from, stage.to, t, camera.position);
+  target = mixVector(stage.fromTarget, stage.toTarget, t, storyLookTarget);
   camera.position.copy(cameraPosition);
   camera.lookAt(target);
 
-  const explode = clamp01((p - 0.4) / 0.3);
+  if (model) {
+    model.rotation.y = storyBaseRotation.y + THREE.MathUtils.lerp(0.06, -0.14, smootherStep(p));
+    model.position.x = storyBasePosition.x + Math.sin(p * Math.PI) * 0.22;
+    model.position.y = storyBasePosition.y + Math.sin(p * Math.PI * 2) * 0.025;
+  }
+
+  const explode = clamp01((p - 0.54) / 0.46);
   applyExplosion(componentRegistry, explode);
   if (!Number.isFinite(lastExplodeProgress) || Math.abs(explode - lastExplodeProgress) > 0.00001) {
     lastExplodeProgress = explode;
@@ -323,6 +330,7 @@ function updateStoryScene(progress) {
   if (storyPercent !== lastStoryPercent) {
     lastStoryPercent = storyPercent;
     DOM.storyProgress.style.width = `${storyPercent}%`;
+    DOM.storyStage.textContent = stage.label;
   }
 }
 
@@ -400,7 +408,7 @@ function setupLab() {
   keyLight.color.set(0xf7eee4);
   fillLight.intensity = 0.92;
   rimLight.intensity = 2.25;
-  rimLight.color.set(0x9fcce8);
+   rimLight.color.set(0xd5d5cf);
   topLight.intensity = 3.1;
   accentLight.intensity = 0.14;
 
@@ -583,7 +591,7 @@ function returnToLab(afterReturn = null, duration = 1.15) {
     duration: 0.5,
     ease: 'power2.in',
     onComplete: () => {
-      accentLight.color.set(0xc9ff48);
+       accentLight.color.set(0xffffff);
       accentLight.position.set(0, -0.8, 1.5);
     }
   });
@@ -634,16 +642,70 @@ function getComponentPointerTarget(componentId) {
 
   for (const mesh of meshes) {
     if (!mesh.geometry.boundingSphere) mesh.geometry.computeBoundingSphere();
-    const center = mesh.geometry.boundingSphere.center.clone().applyMatrix4(mesh.matrixWorld);
-    const ndc = center.project(camera);
-    if (Math.abs(ndc.x) > 1 || Math.abs(ndc.y) > 1 || ndc.z < -1 || ndc.z > 1) continue;
-    raycaster.setFromCamera(new THREE.Vector2(ndc.x, ndc.y), camera);
-    const hit = raycaster.intersectObjects(interactiveMeshes, false)[0];
-    if (hit && componentRegistry.getComponentIdForObject(hit.object) === componentId) {
-      return {
-        x: rect.left + (ndc.x + 1) * 0.5 * rect.width,
-        y: rect.top + (1 - ndc.y) * 0.5 * rect.height
-      };
+    const candidates = [mesh.geometry.boundingSphere.center.clone()];
+    const positions = mesh.geometry.attributes.position;
+    if (positions) {
+      const step = Math.max(1, Math.floor(positions.count / 32));
+      for (let index = 0; index < positions.count; index += step) {
+        candidates.push(new THREE.Vector3().fromBufferAttribute(positions, index));
+      }
+      const indices = mesh.geometry.index;
+      const triangleCount = Math.floor((indices?.count || positions.count) / 3);
+      const triangleStep = Math.max(1, Math.floor(triangleCount / 48));
+      for (let triangle = 0; triangle < triangleCount; triangle += triangleStep) {
+        const offset = triangle * 3;
+        const a = indices ? indices.getX(offset) : offset;
+        const b = indices ? indices.getX(offset + 1) : offset + 1;
+        const c = indices ? indices.getX(offset + 2) : offset + 2;
+        candidates.push(
+          new THREE.Vector3().fromBufferAttribute(positions, a)
+            .add(new THREE.Vector3().fromBufferAttribute(positions, b))
+            .add(new THREE.Vector3().fromBufferAttribute(positions, c))
+            .multiplyScalar(1 / 3)
+        );
+      }
+    }
+    for (const candidate of candidates) {
+      const ndc = candidate.applyMatrix4(mesh.matrixWorld).project(camera);
+      if (Math.abs(ndc.x) > 1 || Math.abs(ndc.y) > 1 || ndc.z < -1 || ndc.z > 1) continue;
+      raycaster.setFromCamera(new THREE.Vector2(ndc.x, ndc.y), camera);
+      const hit = raycaster.intersectObjects(interactiveMeshes, false)[0];
+      if (hit && componentRegistry.getComponentIdForObject(hit.object) === componentId) {
+        return {
+          x: rect.left + (ndc.x + 1) * 0.5 * rect.width,
+          y: rect.top + (1 - ndc.y) * 0.5 * rect.height
+        };
+      }
+    }
+  }
+
+  const holderBox = new THREE.Box3().setFromObject(holder);
+  const projected = [];
+  for (const x of [holderBox.min.x, holderBox.max.x]) {
+    for (const y of [holderBox.min.y, holderBox.max.y]) {
+      for (const z of [holderBox.min.z, holderBox.max.z]) {
+        projected.push(new THREE.Vector3(x, y, z).project(camera));
+      }
+    }
+  }
+  const minX = Math.max(-1, Math.min(...projected.map((point) => point.x)));
+  const maxX = Math.min(1, Math.max(...projected.map((point) => point.x)));
+  const minY = Math.max(-1, Math.min(...projected.map((point) => point.y)));
+  const maxY = Math.min(1, Math.max(...projected.map((point) => point.y)));
+  for (let row = 0; row <= 20; row += 1) {
+    for (let column = 0; column <= 20; column += 1) {
+      const ndc = new THREE.Vector2(
+        THREE.MathUtils.lerp(minX, maxX, column / 20),
+        THREE.MathUtils.lerp(minY, maxY, row / 20)
+      );
+      raycaster.setFromCamera(ndc, camera);
+      const hit = raycaster.intersectObjects(interactiveMeshes, false)[0];
+      if (hit && componentRegistry.getComponentIdForObject(hit.object) === componentId) {
+        return {
+          x: rect.left + (ndc.x + 1) * 0.5 * rect.width,
+          y: rect.top + (1 - ndc.y) * 0.5 * rect.height
+        };
+      }
     }
   }
   return null;
@@ -738,7 +800,10 @@ function render() {
 }
 
 async function loadInitialModel() {
-  await initializeDataApplication();
+  // Keep model loading independent from the optional Django catalog. The 3D
+  // exhibit must remain usable when the API is offline; the existing API
+  // integration continues to hydrate the same state when it is available.
+  initializeDataApplication().catch((error) => console.warn('[Auto Anatomy] Data application unavailable:', error));
   setBackendParts(getSelectedCarParts());
   const fallbackPath = ACTIVE_MODEL_CONFIG.modelPath;
   const requestedPath = await resolveModelUrl(fallbackPath);
@@ -763,6 +828,8 @@ async function loadInitialModel() {
   componentRegistry = result.registry;
   modelAudit = result.audit;
   applyPresentationOffset(model, modelConfig, window.innerWidth <= 900);
+  storyBasePosition.copy(model.position);
+  storyBaseRotation.copy(model.rotation);
   componentRegistry.refreshAllBounds();
   availableParts = buildLabCatalog(componentRegistry, modelConfig, PARTS_DATA, LAB_SLOTS);
   buildPartsNavigation();
@@ -827,6 +894,9 @@ async function loadInitialModel() {
     setExplodeProgress: (progress) => applyExplosion(componentRegistry, progress),
     getComponentTransforms: () => componentRegistry.values().map((component) => ({
       componentId: component.id,
+      category: component.config.metadata?.category || component.config.category || null,
+      system: component.config.metadata?.system || null,
+      layer: component.config.metadata?.layer || 0,
       position: component.object3D.position.toArray(),
       quaternion: component.object3D.quaternion.toArray(),
       scale: component.object3D.scale.toArray(),

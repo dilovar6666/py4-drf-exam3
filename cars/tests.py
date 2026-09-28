@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from accounts.models import CustomUser
 
 from .models import (
     Car,
@@ -16,6 +17,7 @@ from .models import (
 
 class PublicCarsApiTests(APITestCase):
     def setUp(self):
+        self.client.force_authenticate(CustomUser.objects.create_user(username="catalog-reader", email="catalog@example.com", password="test"))
         self.brand_a = CarBrand.objects.create(
             name="Brand A",
             logo_url="https://example.com/a.png",
@@ -70,12 +72,16 @@ class PublicCarsApiTests(APITestCase):
             image_url="https://example.com/part.png",
         )
 
-    def test_public_catalog_is_read_only(self):
+    def test_catalog_is_read_only_for_authenticated_users(self):
         get_response = self.client.get(reverse("car-list"))
         post_response = self.client.post(reverse("car-list"), {}, format="json")
 
         self.assertEqual(get_response.status_code, status.HTTP_200_OK)
         self.assertEqual(post_response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_guest_cannot_read_catalog(self):
+        self.client.force_authenticate(None)
+        self.assertEqual(self.client.get(reverse("car-list")).status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_car_and_component_filters(self):
         response = self.client.get(

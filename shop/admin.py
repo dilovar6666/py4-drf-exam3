@@ -33,8 +33,9 @@ class SparePartAdmin(admin.ModelAdmin):
         "sku",
         "oem_number",
         "car_part",
+        "is_draft",
     )
-    list_filter = ("brand", "category", "car_part")
+    list_filter = ("is_draft", "brand", "category", "car_part")
     search_fields = ("name", "sku", "oem_number")
     list_select_related = ("brand", "category", "car_part")
 
